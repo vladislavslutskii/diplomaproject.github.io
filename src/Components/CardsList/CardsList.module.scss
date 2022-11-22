@@ -1,0 +1,10 @@
+.listWrap {
+  max-width: 1120px;
+  margin: auto;
+  &__Card {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: auto;
+  }
+}

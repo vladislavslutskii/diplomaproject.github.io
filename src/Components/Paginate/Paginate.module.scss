@@ -1,0 +1,84 @@
+.pagesContainer {
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  width: 100%;
+  height: 24px;
+  &__Dark {
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    width: 100%;
+    height: 24px;
+    background-color: #313037;
+  }
+}
+.pagesContainer1 {
+  display: none;
+}
+.pageNumber {
+  display: block !important;
+  font-weight: 600 !important;
+  font-size: 16px !important;
+  line-height: 24px !important;
+  color: #313037 !important;
+  width: 50px !important;
+  height: 50px !important;
+  &:first-child {
+    svg > path {
+      fill: black;
+    }
+  }
+  &:last-child {
+    svg > path {
+      fill: black;
+    }
+  }
+  &:hover {
+    color: #6c1bdb !important;
+    &:first-child {
+      svg > path {
+        fill: #6c1bdb;
+      }
+    }
+    &:last-child {
+      svg > path {
+        fill: #6c1bdb;
+      }
+    }
+  }
+}
+.pageNumber__Dark {
+  display: block !important;
+  color: #fff !important;
+  font-weight: 600 !important;
+  font-size: 16px !important;
+  line-height: 24px !important;
+  width: 50px !important;
+  height: 50px !important;
+  &:hover {
+    color: #6c1bdb !important;
+  }
+}
+.activePageNumber {
+  color: #6c1bdb !important;
+}
+.nextButton {
+  margin-left: auto;
+  color: #8d8e97;
+  position: relative;
+  svg > path {
+    fill: #8d8e97;
+  }
+}
+.nextButton a {
+  margin-left: 27px;
+}
+.prevButton {
+  margin-right: auto;
+  position: relative;
+  color: #8d8e97;
+  margin-right: auto;
+}

@@ -1,0 +1,30 @@
+.input {
+  background: #ffffff;
+  border-radius: 4px;
+  padding: 18px 20px;
+  border: 1px solid transparent;
+  outline: none;
+  color: rgba(49, 48, 55, 0.5);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20px;
+  resize: vertical;
+  &:focus {
+    border-color: #6c1bdb;
+  }
+  &:hover {
+    border-color: #6c1bdb;
+  }
+  &:active {
+    border-color: rgba(49, 48, 55, 0.1);
+    color: #313037;
+  }
+  &:disabled {
+    background: rgba(49, 48, 55, 0.1);
+    color: rgba(49, 48, 55, 0.3);
+  }
+}
+
+.error {
+  border-color: #fd3419;
+}

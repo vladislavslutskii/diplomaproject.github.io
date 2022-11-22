@@ -1,0 +1,44 @@
+.Search {
+  padding-top: 72px;
+  background-color: #fff;
+  &__container {
+    background-color: #fff;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    height: 100%;
+    width: 1125px;
+    margin: 0 auto;
+    &__titleWrap {
+      // margin-bottom: 64px;
+      // margin-right: auto;
+      // font-weight: 700;
+      // font-size: 56px;
+      // line-height: 80px;
+      // color: #313037;
+      width: 100%;
+      font-weight: 700;
+      font-size: 48px;
+      color: #313037;
+      margin-bottom: 40px !important;
+      display: flex;
+      justify-content: center;
+      &__Dark {
+        background-color: #313037;
+      }
+    }
+    &__CardsListWrap {
+      margin-bottom: 42px;
+    }
+    &__Dark {
+      background-color: #313037;
+    }
+  }
+  &__Dark {
+    background-color: #313037;
+  }
+}
+.Search__container__Paginate {
+  padding-bottom: 60px;
+  padding-top: 30px;
+}

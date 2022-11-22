@@ -1,0 +1,9 @@
+export { ArrowLeft } from "./ArrowLeft";
+export { ArrowRight } from "./ArrowRight";
+export { UserImg } from "./UserImg";
+export { HeadLogo } from "./HeadLogo";
+export { HeaderSearch } from "./HeaderSearch";
+export { IconCancel } from "./IconCancel";
+export { Facebook } from "./Facebook";
+export { Tvitter } from "./Tvitter";
+export { Other } from "./Other";
