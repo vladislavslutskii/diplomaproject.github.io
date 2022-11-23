@@ -9,7 +9,7 @@ const Card: FC<CardPostProps> = ({ post }) => {
   const navigate = useNavigate();
 
   const onNavigateToPost = () => {
-    navigate(`/posts/${id}`);
+    navigate(`/content/${id}`);
   };
 
   function convertDate(publishedAt: string | number | Date) {

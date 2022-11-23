@@ -1,14 +1,18 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { CardListType } from "../../Utils";
+import { CardListType, CardPostType } from "../../Utils";
 
 type PostStateType = {
   cardsList: CardListType | [];
   isPostsLoading: boolean;
+  singlePost: CardPostType | null;
+  isPostLoading: boolean;
 };
 
 const INITIAL_STATE: PostStateType = {
   cardsList: [],
   isPostsLoading: false,
+  singlePost: null,
+  isPostLoading: false,
 };
 
 const postsReducer = createSlice({
@@ -26,9 +30,23 @@ const postsReducer = createSlice({
     setPostsLoading: (state, action: PayloadAction<boolean>) => {
       state.isPostsLoading = action.payload;
     },
+    getSinglePost: (state, action: PayloadAction<string>) => {},
+    setSinglePost: (state, action: PayloadAction<CardPostType>) => {
+      state.singlePost = action.payload;
+    },
+    setSinglePostLoading: (state, action: PayloadAction<boolean>) => {
+      state.isPostLoading = action.payload;
+    },
   },
 });
 
 export default postsReducer.reducer;
 
-export const { getPosts, setCardsList, setPostsLoading } = postsReducer.actions;
+export const {
+  getPosts,
+  setCardsList,
+  setPostsLoading,
+  getSinglePost,
+  setSinglePost,
+  setSinglePostLoading,
+} = postsReducer.actions;

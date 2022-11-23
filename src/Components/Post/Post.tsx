@@ -5,14 +5,14 @@ import { Theme, useThemeContext } from "../../Context/ThemeContext/Context";
 import { PostProps } from "./type";
 import Button from "../Button";
 import { ButtonType } from "../Button/types";
-import Paginate from "../Paginate";
 import { Facebook, Other, Tvitter } from "../../Assets/Icons";
-import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { PathNames } from "../../Pages/Router";
 
 const Post: FC<PostProps> = ({ post }) => {
-  const { theme, onChangeTheme } = useThemeContext();
+  const { theme } = useThemeContext();
   const isDarkTheme = theme === Theme.Dark;
-  const { id, image, text, title } = post;
+  const { imageUrl, summary, title, id } = post;
 
   return (
     <div
@@ -27,20 +27,20 @@ const Post: FC<PostProps> = ({ post }) => {
       >
         <div className={styles.Post__container__buttonAndIDWrap}>
           <div className={styles.linkWrap}>
-            <a
-              // to={PathNames.Home}
+            <Link
+              to={PathNames.Home}
               className={classNames(styles.linkWrap, {
                 [styles.linkWrap__Dark]: isDarkTheme,
               })}
             >
               Home |
-            </a>
+            </Link>
           </div>
           <div
             className={classNames(styles.idWrap, {
               [styles.idWrap__Dark]: isDarkTheme,
             })}
-          >{`Post  ${id}`}</div>
+          >{`Post ${id}`}</div>
         </div>
         <div
           className={classNames(styles.Post__container__titleWrap, {
@@ -52,8 +52,8 @@ const Post: FC<PostProps> = ({ post }) => {
         <div className={styles.Post__container__imgWrap}>
           <img
             className={styles.Post__container__imgWrap__img}
-            src={image}
-            alt={image}
+            src={imageUrl || undefined}
+            alt={"#"}
           />
         </div>
         <div className={styles.Post__container__textWrap}>
@@ -62,7 +62,7 @@ const Post: FC<PostProps> = ({ post }) => {
               [styles.Post__container__textWrap__text__Dark]: isDarkTheme,
             })}
           >
-            {text}
+            {summary}
           </div>
         </div>
         <div className={styles.Post__container__buttonsWrap}>

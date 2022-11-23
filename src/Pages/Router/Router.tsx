@@ -10,6 +10,7 @@ export enum PathNames {
   SignIn = `/sign-in`,
   SignUp = `/sign-up`,
   Post = `/posts/:id`,
+  PostContent = `/content/:id`,
 }
 
 const Router = () => {
@@ -18,7 +19,7 @@ const Router = () => {
       <Routes>
         <Route path={PathNames.Home} element={<PagesWrapper></PagesWrapper>}>
           <Route
-            path={PathNames.Post}
+            path={PathNames.PostContent}
             element={<PostContent></PostContent>}
           ></Route>
         </Route>
