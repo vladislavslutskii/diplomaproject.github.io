@@ -79,8 +79,13 @@
     background: #912ef2;
   }
   &:disabled {
-    background: rgba(49, 48, 55, 0.1);
+    background: rgba(49, 48, 55, 0.1) !important;
     border-radius: 2px;
-    color: rgba(49, 48, 55, 0.5);
+    color: rgba(49, 48, 55, 0.5) !important;
+  }
+}
+.button_Dark {
+  &:disabled {
+    background: rgba(255, 255, 255, 0.1);
   }
 }

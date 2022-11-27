@@ -1,4 +1,6 @@
+import classNames from "classnames";
 import React, { FC } from "react";
+import { Theme, useThemeContext } from "../../Context/ThemeContext/Context";
 import styles from "./Button.module.scss";
 
 import { ButtonClassnamesType, ButtonType, ButtonPropsType } from "./types";
@@ -17,10 +19,19 @@ const Button: FC<ButtonPropsType> = ({
   type,
   icon,
 }) => {
+  const { theme } = useThemeContext();
+  const isDarkTheme = theme === Theme.Dark;
   return (
     <button
       onClick={onClick}
-      className={` ${className || ``} ${BUTTON_TYPE_CLASSNAMES[type]} `}
+      className={classNames(
+        styles.button,
+        BUTTON_TYPE_CLASSNAMES[type],
+        className || "",
+        {
+          [styles.button_Dark]: isDarkTheme,
+        }
+      )}
       disabled={disabled}
     >
       {icon}

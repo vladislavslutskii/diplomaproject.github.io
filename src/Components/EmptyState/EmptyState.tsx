@@ -11,12 +11,12 @@ const EmptyState = () => {
   return (
     <div
       className={classnames(styles.emptyStateWrap, {
-        [styles.emptyStateWrap__Dark]: theme === Theme.Dark,
+        [styles.emptyStateWrap_Dark]: theme === Theme.Dark,
       })}
     >
       <div
-        className={classnames(styles.emptyStateWrap__containerImg, {
-          [styles.emptyStateWrap__containerImg__Dark]: theme === Theme.Dark,
+        className={classnames(styles.emptyStateWrap_containerImg, {
+          [styles.emptyStateWrap_containerImg_Dark]: theme === Theme.Dark,
         })}
       >
         <img
@@ -25,8 +25,8 @@ const EmptyState = () => {
         />
       </div>
       <div
-        className={classnames(styles.emptyStateWrap__containerText, {
-          [styles.emptyStateWrap__containerText__Dark]: theme === Theme.Dark,
+        className={classnames(styles.emptyStateWrap_containerText, {
+          [styles.emptyStateWrap_containerText_Dark]: theme === Theme.Dark,
         })}
       >
         <div className={styles.nothingFound}>

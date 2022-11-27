@@ -1,11 +1,9 @@
 .footer {
   width: 100%;
-  background-color: #fff;
-  &__Dark {
+  &_Dark {
     background-color: #313037;
   }
 }
-
 .footerWrap {
   display: flex;
   justify-content: space-between;
@@ -13,17 +11,17 @@
   margin: 0 auto;
   padding: 34px 0;
   border-top: 1px solid rgba(49, 48, 55, 0.1);
-  background-color: #fff;
-  &__Dark {
+  &_Dark {
     background-color: #313037;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
   }
-  &__Watermark {
+  &_Watermark {
     font-weight: 400;
     font-size: 16px;
     line-height: 24px;
     color: #8d8e97;
   }
-  &__switchWrap {
+  &_switchWrap {
     display: flex;
   }
 }
@@ -33,7 +31,7 @@
   line-height: 24px;
   color: rgba(49, 48, 55, 0.5);
   margin-right: 20px;
-  &__Dark {
+  &_Dark {
     color: #fff;
   }
 }

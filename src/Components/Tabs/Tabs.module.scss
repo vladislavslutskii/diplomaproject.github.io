@@ -46,7 +46,7 @@
           transition: transform 0.25s;
         }
         &:hover {
-          color: #2231aa;
+          color: #912ef2;
         }
         &:disabled {
           color: #aeaeae;
@@ -98,7 +98,7 @@
 }
 
 .navigation__list__item__text__active {
-  color: green;
+  color: blue;
   border: none;
   background-color: transparent;
   font-weight: 600;
@@ -119,7 +119,7 @@
     transition: transform 0.25s;
   }
   &:hover {
-    color: green;
+    color: #912ef2;
   }
   &:disabled {
     color: #aeaeae;

@@ -29,9 +29,9 @@ const PostContent = () => {
   return !isLoading && post ? (
     <Post post={post} />
   ) : (
-    <div className={styles.lottie__container}>
+    <div className={styles.lottie_container}>
       <Lottie
-        className={styles.lottie__container__animation}
+        className={styles.lottie_container_animation}
         animationData={animation}
         loop={true}
       ></Lottie>

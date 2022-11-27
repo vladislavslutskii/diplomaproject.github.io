@@ -7,41 +7,84 @@
   align-items: center;
   &_logo {
     margin: 20px 32px;
+    cursor: pointer;
+    &:hover {
+      border-radius: 16px;
+      transform: scale(1.05);
+      transition: 0.2s;
+    }
   }
   &_inputWrap {
     height: 96px;
     width: 100%;
+    display: flex;
   }
   &_input {
     margin: 0 !important;
-    height: 60px !important;
+    height: 100% !important;
     width: 95.1% !important;
-    background: rgba(49, 48, 55, 0.1) !important;
-    color: #fff !important;
+    background: transparent !important;
+    color: black !important;
     border: none !important;
     &::-webkit-input-placeholder {
-      color: rgba(49, 48, 55, 0.5);
+      color: rgba(49, 48, 55, 0.5) !important;
+    }
+    &_Dark {
+      &::-webkit-input-placeholder {
+        color: #aeaeae !important;
+      }
+      color: white !important;
     }
   }
-  &__search {
+  &_searchAUser {
     margin-left: auto;
     height: 100%;
-    min-width: 84px;
     display: flex;
     align-items: center;
     justify-content: center;
-    &__icon {
+    &_icon {
       svg > path {
-        stroke: black !important;
+        fill: black;
       }
     }
-    &__close {
-      background: rgba(49, 48, 55, 0.1) !important;
+    &_open {
+      background: rgba(49, 48, 55, 0.1);
+    }
+    &_openDark {
+      background: transparent;
     }
   }
-  &__user {
-    margin-left: auto;
-    border-left: 1px solid #f3f3f3;
-    height: 100%;
+  &_Dark {
+    background: rgba(255, 255, 255, 0.1);
   }
+}
+.searchIcon {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 84px;
+  svg > path {
+    stroke: black;
+  }
+  &_Dark {
+    svg > path {
+      stroke: white;
+    }
+  }
+}
+.cancelIcon {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 84px;
+  &_Dark {
+    svg > path {
+      fill: white;
+    }
+  }
+}
+.userWrap {
+  cursor: pointer;
 }

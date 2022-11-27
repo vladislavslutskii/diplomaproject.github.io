@@ -126,25 +126,25 @@ const Search = () => {
   return (
     <div
       className={classNames(styles.Search, {
-        [styles.Search__Dark]: isDarkTheme,
+        [styles.Search_Dark]: isDarkTheme,
       })}
     >
       <div
-        className={classNames(styles.Search__container, {
-          [styles.Search__container__Dark]: isDarkTheme,
+        className={classNames(styles.Search_container, {
+          [styles.Search_container_Dark]: isDarkTheme,
         })}
       >
         <div
-          className={classNames(styles.Search__container__titleWrap, {
-            [styles.Search__container__titleWrap__Dark]: isDarkTheme,
+          className={classNames(styles.Search_container_titleWrap, {
+            [styles.Search_container_titleWrap_Dark]: isDarkTheme,
           })}
         >
           Search result "Astronauts"
         </div>
-        <div className={styles.Search__container__CardsListWrap}>
+        <div className={styles.Search_container_CardsListWrap}>
           {/* <SearchList searchedPosts={POST_MOCK}></SearchList> */}
         </div>
-        <div className={styles.Search__container__Paginate}>
+        <div className={styles.Search_container_Paginate}>
           <Paginate pagesCount={`16`}></Paginate>
         </div>
       </div>

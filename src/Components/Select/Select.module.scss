@@ -4,13 +4,16 @@
 //   background: #ffffff;
 //   border-radius: 4px;
 // }
-.customSelect {
+.selectWrap {
   position: relative;
   display: inline-block;
   width: 256px;
+  &__Dark {
+    background-color: #313037;
+  }
 }
 
-.customSelect::after {
+.selectWrap::after {
   content: "";
   border-width: 7px;
   border-style: solid;
@@ -34,8 +37,13 @@
   cursor: pointer;
   position: relative;
   -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  &_Dark {
+    background-color: #313037;
+    color: #fff;
+    border: 1px solid #ffff;
+  }
 }
 .select:focus,
 .select:hover {
@@ -48,6 +56,11 @@ option {
   background: #ffffff;
   padding: 18px 20px;
   position: absolute;
+  &__Dark {
+    background-color: #313037;
+    color: #fff;
+    border: 1px solid #ffff;
+  }
 }
 option span {
   color: rgba(49, 48, 55, 0.5);

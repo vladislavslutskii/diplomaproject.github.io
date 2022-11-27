@@ -1,0 +1,13 @@
+.app {
+  background: rgba(243, 243, 243, 1);
+  background: #fff;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  &_Dark {
+    background-color: #313037;
+  }
+}

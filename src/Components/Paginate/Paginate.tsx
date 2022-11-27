@@ -1,36 +1,34 @@
 import React, { useEffect, useState } from "react";
-import ReactDOM from "react-dom";
-import classnames from "classnames";
-import styles from "./Paginate.module.scss";
 import ReactPaginate from "react-paginate";
-// import { useSelector } from "react-redux";
-
 import { ArrowLeft, ArrowRight } from "../../Assets/Icons";
-import { Theme, useThemeContext } from "../../Context/ThemeContext/Context";
-// import PostsSelectors from "../../Redux/selectors/postsSelectors";
+import { useThemeContext, Theme } from "../../Context/ThemeContext/Context";
+import classnames from "classnames";
+import { useSelector } from "react-redux";
+import PostsSelectors from "../../Redux/selectors/postsSelectors";
+import styles from "./Paginate.module.scss";
 
 const Paginate = ({ pagesCount, onPageChange, page }: any) => {
-  const { theme, onChangeTheme } = useThemeContext();
+  const { theme } = useThemeContext();
   const isDarkTheme = theme === Theme.Dark;
-  // const isPostsLoading = useSelector(PostsSelectors.getPostsLoading);
+  const isPostsLoading = useSelector(PostsSelectors.getPostsLoading);
   return (
     <ReactPaginate
       pageCount={pagesCount}
       onPageChange={onPageChange}
       containerClassName={classnames(styles.pagesContainer, {
-        // [styles.pagesContainer1]: isPostsLoading,
-        [styles.pagesContainer__Dark]: isDarkTheme,
+        [styles.pagesContainer1]: isPostsLoading,
+        [styles.pagesContainer_Dark]: isDarkTheme,
       })}
       pageClassName={classnames(styles.pageNumber, {
-        [styles.pageNumber__Dark]: isDarkTheme,
+        [styles.pageNumber_Dark]: isDarkTheme,
       })}
       breakClassName={classnames(styles.pageNumber, {
-        [styles.pageNumber__Dark]: isDarkTheme,
+        [styles.pageNumber_Dark]: isDarkTheme,
       })}
       breakLinkClassName={styles.linkPage}
       activeLinkClassName={styles.linkPage}
       pageLinkClassName={classnames(styles.linkPage, {
-        [styles.linkPage__Dark]: isDarkTheme,
+        [styles.linkPage_Dark]: isDarkTheme,
       })}
       activeClassName={styles.activePageNumber}
       nextClassName={classnames(styles.pageNumber, styles.nextButton, {

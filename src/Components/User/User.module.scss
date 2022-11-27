@@ -5,6 +5,7 @@
   width: 232px;
   height: 96px;
   background: #ffffff;
+  border-left: 1px solid #f3f3f3;
   &_Wrap {
     padding: 17px 34px;
     display: flex;
@@ -17,6 +18,9 @@
     font-size: 16px;
     line-height: 34px;
     color: #313037;
+    &_Dark {
+      color: #fff !important;
+    }
   }
   &_Img {
     width: 48px;
@@ -28,5 +32,9 @@
     justify-content: center;
     color: white;
     font-weight: bold;
+  }
+  &_Dark {
+    background-color: transparent;
+    border-left: 1px solid #313037;
   }
 }

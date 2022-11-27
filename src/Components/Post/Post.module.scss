@@ -1,9 +1,9 @@
 .Post {
   background-color: #fff;
-  &__Dark {
+  &_Dark {
     background-color: #313037;
   }
-  &__container {
+  &_container {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -11,32 +11,32 @@
     height: 100%;
     width: 1120px;
     margin: 0 auto;
-    &__buttonAndIDWrap {
+    &_buttonAndIDWrap {
       margin-top: 72px;
       margin-right: auto;
       display: flex;
     }
-    &__titleWrap {
+    &_titleWrap {
       margin-top: 32px;
       font-weight: 700;
       font-size: 56px;
       line-height: 80px;
       color: #313037;
-      &__Dark {
+      &_Dark {
         color: #fff;
       }
     }
-    &__imgWrap {
+    &_imgWrap {
       width: 992px;
       height: 518px;
       margin: 0 auto;
-      &__img {
+      &_img {
         margin-top: 42px;
         width: 100%;
         height: 100%;
       }
     }
-    &__textWrap {
+    &_textWrap {
       margin-top: 58px;
       max-width: 922px;
       display: flex;
@@ -44,28 +44,29 @@
       justify-content: center;
       gap: 48px;
       margin-bottom: 48px;
-      &__text {
+      &_text {
         font-weight: 400;
         font-size: 18px;
         line-height: 32px;
         color: #313037;
-        &__Dark {
+        &_Dark {
           color: #fff;
         }
       }
     }
-    &__buttonsWrap {
+    &_buttonsWrap {
       margin-bottom: 72px;
       width: 922px;
       display: flex;
       margin: 0;
       padding: 0;
       justify-content: space-between;
-      &__rightSide {
+      margin-bottom: 15px;
+      &_rightSide {
         display: flex;
       }
     }
-    &__Dark {
+    &_Dark {
       background-color: #313037;
     }
   }

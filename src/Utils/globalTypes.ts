@@ -3,8 +3,9 @@ export enum TabsNames {
   Favorites = "News",
 }
 export enum SortOrder {
-  TitleAToZ = "a-z",
-  TitleZtoA = "z-a",
+  Initial = "",
+  Title = "title",
+  Date = "publishedAt",
 }
 export type CardPostType = {
   id: number;
@@ -13,5 +14,8 @@ export type CardPostType = {
   publishedAt: string;
   title: string;
 };
-
+export type GetPostsPayload = {
+  _start: number;
+  _sort: string;
+};
 export type CardListType = Array<CardPostType>;

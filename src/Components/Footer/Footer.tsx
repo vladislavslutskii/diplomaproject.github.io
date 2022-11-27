@@ -19,36 +19,36 @@ const Footer = () => {
   return (
     <div
       className={classnames(styles.footer, {
-        [styles.footer__Dark]: isDarkTheme,
+        [styles.footer_Dark]: isDarkTheme,
       })}
     >
       <div
         className={classnames(styles.footerWrap, {
-          [styles.footerWrap__Dark]: isDarkTheme,
+          [styles.footerWrap_Dark]: isDarkTheme,
         })}
       >
         <div
-          className={classnames(styles.footerWrap__Watermark, {
-            [styles.footerWrap__WaterMark__Dark]: isDarkTheme,
+          className={classnames(styles.footerWrap_Watermark, {
+            [styles.footerWrap_WaterMark_Dark]: isDarkTheme,
           })}
         >
           ©2022 Blogfolio
         </div>
         <div
-          className={classnames(styles.footerWrap__switchWrap, {
-            [styles.footerWrap__switchWrap__Dark]: isDarkTheme,
+          className={classnames(styles.footerWrap_switchWrap, {
+            [styles.footerWrap_switchWrap_Dark]: isDarkTheme,
           })}
         >
           <div
             className={classnames(styles.switchLabel, {
-              [styles.switchLabel__Dark]: isDarkTheme,
+              [styles.switchLabel_Dark]: isDarkTheme,
             })}
           >
             <Label title={"Dark theme"} className={styles.switchLabel} />
           </div>
           <div
             className={classnames(styles.switch, {
-              [styles.switch__Dark]: isDarkTheme,
+              [styles.switch_Dark]: isDarkTheme,
             })}
           >
             <Switch checked={checked} handleChange={handleChange}></Switch>

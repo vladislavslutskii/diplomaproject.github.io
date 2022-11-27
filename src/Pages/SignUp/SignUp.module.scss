@@ -1,11 +1,10 @@
 * {
   box-sizing: border-box;
 }
-.signIn {
+
+.signUp {
+  position: relative;
   background-color: #fff;
-  &__Dark {
-    background-color: #313037;
-  }
   &__container {
     display: flex;
     flex-direction: column;
@@ -14,9 +13,12 @@
     height: 100%;
     width: 1120px;
     margin: 0 auto;
-    &__Dark {
+    &__dark {
       background-color: #313037;
     }
+  }
+  &__Dark {
+    background-color: #313037;
   }
 }
 
@@ -31,18 +33,10 @@
     color: #313037;
   }
   &__backToHomeText {
-    color: black;
     text-decoration: none;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 24px;
-    &:hover {
-      cursor: pointer;
-      color: blue;
-    }
+    color: black;
   }
   &__backToHomeTextDark {
-    text-decoration: none;
     color: #fff;
   }
 }
@@ -63,6 +57,15 @@
     display: flex;
     flex-direction: column;
     gap: 8px;
+    &__nameInput {
+      width: 100%;
+      border-radius: 4px;
+      &__Dark {
+        background: rgba(255, 255, 255, 0.1);
+        color: rgba(255, 255, 255, 0.5);
+        border-radius: 4px;
+      }
+    }
     &__emailInput {
       width: 100%;
       border-radius: 4px;
@@ -73,6 +76,15 @@
       }
     }
     &__passwordInput {
+      width: 100%;
+      border-radius: 4px;
+      &__Dark {
+        background: rgba(255, 255, 255, 0.1);
+        color: rgba(255, 255, 255, 0.5);
+        border-radius: 4px;
+      }
+    }
+    &__confirmPasswordInput {
       width: 100%;
       border-radius: 4px;
       &__Dark {
@@ -96,7 +108,6 @@
     box-shadow: none;
   }
 }
-
 .label {
   font-weight: 600;
   font-size: 16px;
@@ -112,7 +123,7 @@
   align-items: center;
   &__signUpButton {
     margin-top: 8px;
-    width: 544px !important;
+    width: 100%;
     margin-bottom: 24px;
   }
   &__formFooterText {
@@ -124,7 +135,7 @@
     &__Dark {
       color: #fff;
     }
-    &__SignIn {
+    &__SignUp {
       text-decoration: none;
       color: #2231aa;
       &__Dark {

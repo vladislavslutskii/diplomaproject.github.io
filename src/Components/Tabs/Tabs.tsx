@@ -24,10 +24,9 @@ const Tabs: FC<TabsProps> = ({ tabs, onClick, activeTab }) => {
           return (
             <li
               key={key}
-              className={styles.navigation__list__item}
-              // className={classnames({
-              //   [styles.activeTab]: activeTab === key,
-              // })}
+              className={classnames(styles.navigation__list__item, {
+                [styles.activeTab]: activeTab === key,
+              })}
             >
               <button
                 className={classnames(

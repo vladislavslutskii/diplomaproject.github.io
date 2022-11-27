@@ -4,6 +4,9 @@ import { POST_MOCK } from "../../App";
 import Post from "../../Components/Post";
 import PagesWrapper from "../PagesWrapper";
 import PostContent from "../PostContent";
+import Search from "../Search";
+import SignIn from "../SignIn";
+import SignUp from "../SignUp";
 
 export enum PathNames {
   Home = `/`,
@@ -11,6 +14,7 @@ export enum PathNames {
   SignUp = `/sign-up`,
   Post = `/posts/:id`,
   PostContent = `/content/:id`,
+  Search = "/search",
 }
 
 const Router = () => {
@@ -22,6 +26,9 @@ const Router = () => {
             path={PathNames.PostContent}
             element={<PostContent></PostContent>}
           ></Route>
+          <Route path={PathNames.SignIn} element={<SignIn></SignIn>}></Route>
+          <Route path={PathNames.SignUp} element={<SignUp></SignUp>}></Route>
+          <Route path={PathNames.Search} element={<Search></Search>} />
         </Route>
         <Route
           path={`*`}

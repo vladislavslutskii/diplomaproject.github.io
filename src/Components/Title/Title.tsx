@@ -10,8 +10,8 @@ const Title = ({ title }: any) => {
 
   return (
     <div
-      className={classnames(styles.title__Wrap, {
-        [styles.title__WrapDark]: theme === Theme.Dark,
+      className={classnames(styles.title_Wrap, {
+        [styles.title_WrapDark]: theme === Theme.Dark,
       })}
     >
       <h1>{title}</h1>

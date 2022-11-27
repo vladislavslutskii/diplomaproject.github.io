@@ -17,20 +17,20 @@ const Post: FC<PostProps> = ({ post }) => {
   return (
     <div
       className={classNames(styles.Post, {
-        [styles.Post__Dark]: isDarkTheme,
+        [styles.Post_Dark]: isDarkTheme,
       })}
     >
       <div
-        className={classNames(styles.Post__container, {
-          [styles.Post__container__Dark]: isDarkTheme,
+        className={classNames(styles.Post_container, {
+          [styles.Post_container_Dark]: isDarkTheme,
         })}
       >
-        <div className={styles.Post__container__buttonAndIDWrap}>
+        <div className={styles.Post_container_buttonAndIDWrap}>
           <div className={styles.linkWrap}>
             <Link
               to={PathNames.Home}
               className={classNames(styles.linkWrap, {
-                [styles.linkWrap__Dark]: isDarkTheme,
+                [styles.linkWrap_Dark]: isDarkTheme,
               })}
             >
               Home |
@@ -38,35 +38,35 @@ const Post: FC<PostProps> = ({ post }) => {
           </div>
           <div
             className={classNames(styles.idWrap, {
-              [styles.idWrap__Dark]: isDarkTheme,
+              [styles.idWrap_Dark]: isDarkTheme,
             })}
           >{`Post ${id}`}</div>
         </div>
         <div
-          className={classNames(styles.Post__container__titleWrap, {
-            [styles.Post__container__titleWrap__Dark]: isDarkTheme,
+          className={classNames(styles.Post_container_titleWrap, {
+            [styles.Post_container_titleWrap_Dark]: isDarkTheme,
           })}
         >
           {title}
         </div>
-        <div className={styles.Post__container__imgWrap}>
+        <div className={styles.Post_container_imgWrap}>
           <img
-            className={styles.Post__container__imgWrap__img}
+            className={styles.Post_container_imgWrap_img}
             src={imageUrl || undefined}
             alt={"#"}
           />
         </div>
-        <div className={styles.Post__container__textWrap}>
+        <div className={styles.Post_container_textWrap}>
           <div
-            className={classNames(styles.Post__container__textWrap__text, {
-              [styles.Post__container__textWrap__text__Dark]: isDarkTheme,
+            className={classNames(styles.Post_container_textWrap_text, {
+              [styles.Post_container_textWrap_text_Dark]: isDarkTheme,
             })}
           >
             {summary}
           </div>
         </div>
-        <div className={styles.Post__container__buttonsWrap}>
-          <div className={styles.Post__container__buttonsWrap__rightSide}>
+        <div className={styles.Post_container_buttonsWrap}>
+          <div className={styles.Post_container_buttonsWrap_rightSide}>
             <Button
               type={ButtonType.ButtonIcon}
               title={null}

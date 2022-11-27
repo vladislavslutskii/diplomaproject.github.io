@@ -6,10 +6,10 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
-  &__Dark {
+  &_Dark {
     background-color: #313037;
   }
-  &__containerImg {
+  &_containerImg {
     background: linear-gradient(
       90deg,
       rgba(145, 46, 242, 1) 0%,
@@ -25,11 +25,11 @@
       border-radius: 50%;
     }
   }
-  &__containerText {
+  &_containerText {
     text-align: center;
     margin-top: 35px;
   }
-  &__Dark {
+  &_Dark {
     background-color: #313037;
     color: white;
   }
@@ -50,7 +50,7 @@
   &:hover {
     color: blue;
   }
-  &__Dark {
+  &_Dark {
     background-color: #313037;
     color: white;
   }

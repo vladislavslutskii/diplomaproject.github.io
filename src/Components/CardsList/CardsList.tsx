@@ -13,12 +13,12 @@ const CardsList: FC<CardListProps> = ({ cardList }) => {
   return (
     <div
       className={classNames(styles.listWrap, {
-        [styles.listWrap__Dark]: isDarkTheme,
+        [styles.listWrap_Dark]: isDarkTheme,
       })}
     >
       <div
-        className={classNames(styles.listWrap__Card, {
-          [styles.listWrap__Card__Dark]: isDarkTheme,
+        className={classNames(styles.listWrap_Card, {
+          [styles.listWrap_Card_Dark]: isDarkTheme,
         })}
       >
         {cardList.map((post, id) => {

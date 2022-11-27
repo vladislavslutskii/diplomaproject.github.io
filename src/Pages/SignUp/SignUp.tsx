@@ -1,14 +1,15 @@
-import React, { useState, FC, useEffect } from "react";
-import styles from "./SignIn.module.scss";
-import classnames from "classnames";
+import React, { FC, useState, useEffect } from "react";
 
-import { useThemeContext, Theme } from "../../Context/ThemeContext/Context";
-import { ButtonType } from "../../Components/Button/types";
+import { Link } from "react-router-dom";
 import Input from "../../Components/Input";
 import Button from "../../Components/Button";
 import Title from "../../Components/Title";
-import { Link } from "react-router-dom";
+import styles from "./SignUp.module.scss";
+import classnames from "classnames";
+import { useThemeContext, Theme } from "../../Context/ThemeContext/Context";
 import { PathNames } from "../Router";
+import { useDispatch } from "react-redux";
+import { ButtonType } from "../../Components/Button/types";
 
 const validateEmail = (email: string) => {
   return String(email)
@@ -22,7 +23,9 @@ type LabelProps = {
   title: string;
 };
 
-const SignIn = () => {
+const SignUp = () => {
+  const [name, setName] = useState("");
+
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState("");
   const [emailTouched, setEmailTouched] = useState(false);
@@ -31,8 +34,12 @@ const SignIn = () => {
   const [passwordError, setPasswordError] = useState("");
   const [passwordTouched, setPasswordTouched] = useState(false);
 
-  const { theme, onChangeTheme } = useThemeContext();
-  const isDarkTheme = theme === Theme.Dark;
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [confirmPasswordError, setConfirmPasswordError] = useState("");
+  const [confirmPasswordTouched, setConfirmPasswordTouched] = useState(false);
+
+  const [modalActive, setModalActive] = useState(false);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (emailTouched && !validateEmail(email)) {
@@ -50,6 +57,16 @@ const SignIn = () => {
     }
   }, [passwordTouched, password]);
 
+  useEffect(() => {
+    if (confirmPasswordTouched && confirmPassword.length < 8) {
+      setConfirmPasswordError(`Enter more than 8 characters`);
+    } else if (confirmPasswordTouched && password !== confirmPassword) {
+      setConfirmPasswordError(`Пароли не совпадают`);
+    } else {
+      setConfirmPasswordError(``);
+    }
+  }, [confirmPasswordTouched, confirmPassword, password]);
+
   const onBlurEmail = () => {
     setEmailTouched(true);
   };
@@ -58,11 +75,15 @@ const SignIn = () => {
     setPasswordTouched(true);
   };
 
+  const onBlurConfirmPassword = () => {
+    setConfirmPasswordTouched(true);
+  };
+
   const Label: FC<LabelProps> = ({ title }) => {
     return (
       <div
         className={classnames(styles.label, {
-          [styles.label__Dark]: isDarkTheme,
+          [styles.label__Dark]: theme === Theme.Dark,
         })}
       >
         {title}
@@ -70,15 +91,18 @@ const SignIn = () => {
     );
   };
 
+  const { theme, onChangeTheme } = useThemeContext();
+  const isDarkTheme = theme === Theme.Dark;
+
   return (
     <div
-      className={classnames(styles.signIn, {
-        [styles.signIn__Dark]: isDarkTheme,
+      className={classnames(styles.signUp, {
+        [styles.signUp__Dark]: isDarkTheme,
       })}
     >
       <div
-        className={classnames(styles.signIn__container, {
-          [styles.signIn__container__Dark]: isDarkTheme,
+        className={classnames(styles.signUp__container, {
+          [styles.signUn__container_Dark]: isDarkTheme,
         })}
       >
         <div className={styles.titleWrap}>
@@ -90,7 +114,7 @@ const SignIn = () => {
           >
             Back to home
           </Link>
-          <Title title={"Sign In"}></Title>
+          <Title title={"Sign Up"}></Title>
         </div>
 
         <div
@@ -99,13 +123,27 @@ const SignIn = () => {
           })}
         >
           <div className={styles.formContainer__inputContainer}>
+            <Label title={"Name"} />
+            <Input
+              value={name}
+              onChange={setName}
+              placeholder={"Your name"}
+              className={classnames(
+                styles.formContainer__inputContainer__nameInput,
+                {
+                  [styles.formContainer__inputContainer__nameInput__Dark]:
+                    isDarkTheme,
+                }
+              )}
+            />
+          </div>
+
+          <div className={styles.formContainer__inputContainer}>
             <Label title={"Email"} />
             <Input
               value={email}
               onChange={setEmail}
               placeholder={"Your email"}
-              onBlur={onBlurEmail}
-              error={!!emailError}
               className={classnames(
                 styles.formContainer__inputContainer__emailInput,
                 {
@@ -113,6 +151,8 @@ const SignIn = () => {
                     isDarkTheme,
                 }
               )}
+              onBlur={onBlurEmail}
+              error={!!emailError}
             />
             {emailTouched && emailError && (
               <div
@@ -124,6 +164,7 @@ const SignIn = () => {
               </div>
             )}
           </div>
+
           <div className={styles.formContainer__inputContainer}>
             <Label title={"Password"} />
             <Input
@@ -131,8 +172,6 @@ const SignIn = () => {
               value={password}
               onChange={setPassword}
               placeholder={"Your password"}
-              onBlur={onBlurPassword}
-              error={!!passwordError}
               className={classnames(
                 styles.formContainer__inputContainer__passwordInput,
                 {
@@ -140,6 +179,8 @@ const SignIn = () => {
                     isDarkTheme,
                 }
               )}
+              onBlur={onBlurPassword}
+              error={!!passwordError}
             />
             {passwordTouched && passwordError && (
               <div
@@ -150,44 +191,61 @@ const SignIn = () => {
                 {passwordError}
               </div>
             )}
-            <div
+          </div>
+
+          <div className={styles.formContainer__inputContainer}>
+            <Label title={"Confirm Password"} />
+            <Input
+              type="password"
+              value={confirmPassword}
+              onChange={setConfirmPassword}
+              placeholder={"Confirm password"}
               className={classnames(
-                styles.formContainer__inputContainer__forgotPass,
+                styles.formContainer__inputContainer__confirmPasswordInput,
                 {
-                  [styles.formContainer__inputContainer__forgotPass__Dark]:
+                  [styles.formContainer__inputContainer__confirmPasswordInput__Dark]:
                     isDarkTheme,
                 }
               )}
-            >
-              Forgot password?
-            </div>
+              onBlur={onBlurConfirmPassword}
+              error={!!confirmPasswordError}
+            />
+            {confirmPasswordTouched && confirmPasswordError && (
+              <div
+                className={classnames({
+                  [styles.error__Dark]: isDarkTheme,
+                })}
+              >
+                {confirmPasswordError}
+              </div>
+            )}
           </div>
 
           <div className={styles.buttonAndText}>
             <Button
               type={ButtonType.Primary}
-              title={"Sign In"}
-              onClick={onChangeTheme}
+              title={"Sign Up"}
               className={styles.buttonAndText__signUpButton}
+              disabled={false}
             />
             <div
               className={classnames(styles.buttonAndText__formFooterText, {
                 [styles.buttonAndText__formFooterText__Dark]: isDarkTheme,
               })}
             >
-              Don’t have an account?{" "}
+              Already have an account?{" "}
               <Link
+                to={PathNames.SignIn}
                 className={classnames(
-                  styles.buttonAndText__formFooterText__SignIn,
+                  styles.buttonAndText__formFooterText__SignUp,
                   {
-                    [styles.buttonAndText__formFooterText__SignIn__Dark]:
+                    [styles.buttonAndText__formFooterText__SignUp__Dark]:
                       isDarkTheme,
                   }
                 )}
-                to={PathNames.SignUp}
               >
                 {" "}
-                Sign Up
+                Sign In
               </Link>
             </div>
           </div>
@@ -197,4 +255,4 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+export default SignUp;

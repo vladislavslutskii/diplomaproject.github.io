@@ -12,7 +12,7 @@ const Label: FC<LabelProps> = ({ title, required, className }) => {
     <div
       className={classNames(styles.label, className, {
         [styles.required]: required,
-        [styles.label__Dark]: isDarkTheme,
+        [styles.label_Dark]: isDarkTheme,
       })}
     >
       {title}
