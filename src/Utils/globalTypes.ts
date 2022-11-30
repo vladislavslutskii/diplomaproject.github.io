@@ -1,6 +1,6 @@
 export enum TabsNames {
-  All = "Articles",
-  Favorites = "News",
+  Articles = "articles",
+  News = "news",
 }
 export enum SortOrder {
   Initial = "",
@@ -11,7 +11,7 @@ export type CardPostType = {
   id: number;
   imageUrl: string;
   summary: string;
-  publishedAt: string;
+  updatedAt: string;
   title: string;
 };
 export type GetPostsPayload = {
@@ -19,3 +19,13 @@ export type GetPostsPayload = {
   _sort: string;
 };
 export type CardListType = Array<CardPostType>;
+
+export type SearchPostsPayload = {
+  title_contains: string;
+  _start: number;
+  isOverwrite: boolean;
+};
+export type SetSearchedPostsPayload = {
+  data: CardListType;
+  isOverwrite: boolean;
+};

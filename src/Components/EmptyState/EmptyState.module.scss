@@ -5,7 +5,7 @@
   align-content: center;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 80vh;
   &_Dark {
     background-color: #313037;
   }
@@ -49,6 +49,7 @@
   color: black;
   &:hover {
     color: blue;
+    cursor: pointer;
   }
   &_Dark {
     background-color: #313037;

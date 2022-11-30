@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import classNames from "classnames";
 import { Theme, useThemeContext } from "../../Context/ThemeContext/Context";
 import styles from "./Blog.module.scss";
@@ -16,7 +16,13 @@ import Select from "../../Components/Select";
 import CardsList from "../../Components/CardsList";
 import Paginate from "../../Components/Paginate";
 import { useDispatch, useSelector } from "react-redux";
-import { getPosts, getPostsCount } from "../../Redux/reducers/postsreducer";
+import {
+  getBlogPosts,
+  getBlogPostsCount,
+  getPosts,
+  getPostsCount,
+  setActiveTab,
+} from "../../Redux/reducers/postsreducer";
 import PostsSelectors from "../../Redux/selectors/postsSelectors";
 import Lottie from "lottie-react";
 import animation from "../../lotties/transfer.json";
@@ -24,26 +30,37 @@ import animation from "../../lotties/transfer.json";
 const Blog = () => {
   const { theme, onChangeTheme } = useThemeContext();
   const isDarkTheme = theme === Theme.Dark;
+  const activeTab = useSelector(PostsSelectors.getActiveTab);
 
   const [order, setOrder] = useState(SortOrder.Initial);
   const isPostsLoading = useSelector(PostsSelectors.getPostsLoading);
 
+  const onTabClick = (id: TabsNames) => {
+    dispatch(setActiveTab(id));
+  };
+
   const [page, setPage] = useState(DEFAULT_PAGE_NUMBER);
   const cardsCount = useSelector(PostsSelectors.getCardsCount);
-  const pagesCount = Math.ceil(cardsCount / PER_PAGE);
+  const cardsBlogCount = useSelector(PostsSelectors.getBlogCardsCount);
 
-  const TABS_NAME = [
-    {
-      key: TabsNames.All,
-      title: "Articles",
-      disabled: false,
-    },
-    {
-      key: TabsNames.Favorites,
-      title: "News",
-      disabled: false,
-    },
-  ];
+  const cardsList = useSelector(PostsSelectors.getCardsList);
+
+  const tabs = useMemo(
+    () => [
+      {
+        key: TabsNames.Articles,
+        title: "Articles",
+        disabled: false,
+      },
+      {
+        key: TabsNames.News,
+        title: "News",
+        disabled: false,
+      },
+    ],
+    []
+  );
+
   const options = [
     {
       key: SortOrder.Initial,
@@ -64,17 +81,26 @@ const Blog = () => {
 
   const dispatch = useDispatch();
 
+  const blogPost = activeTab === TabsNames.News;
+  // newsPost ? PostsSelectors.getBlogPost : PostsSelectors.getCardsList;
+  // newsPost ? PostsSelectors.getBlogCardsCount : PostsSelectors.getCardsCount;
+  const pagesCount = Math.ceil(
+    blogPost ? cardsBlogCount / PER_PAGE : cardsCount / PER_PAGE
+  );
   useEffect(() => {
     const _start = (page - 1) * PER_PAGE;
-    dispatch(getPosts({ _start, _sort: order }));
-    dispatch(getPostsCount());
-  }, [page, order]);
+    dispatch(
+      blogPost
+        ? getBlogPosts({ _start, _sort: order })
+        : getPosts({ _start, _sort: order })
+    );
+    dispatch(blogPost ? getBlogPostsCount() : getPostsCount());
+  }, [page, blogPost, order]);
 
   const onPageChange = ({ selected }: { selected: number }) => {
     setPage(selected + 1);
   };
 
-  const cardsList = useSelector(PostsSelectors.getCardsList);
   return (
     <div
       className={classNames(styles.Blog, {
@@ -95,13 +121,7 @@ const Blog = () => {
         </div>
         <div className={styles.Blog_container_tabWrap}>
           {!isPostsLoading ? (
-            <Tabs
-              tabs={TABS_NAME}
-              onClick={function (id: TabsNames): void {
-                throw new Error("Function not implemented.");
-              }}
-              activeTab={TabsNames.All}
-            ></Tabs>
+            <Tabs tabs={tabs} onClick={onTabClick} activeTab={activeTab}></Tabs>
           ) : null}
         </div>
         <div

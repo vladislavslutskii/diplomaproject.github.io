@@ -1,5 +1,12 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { CardListType, CardPostType, GetPostsPayload } from "../../Utils";
+import {
+  CardListType,
+  CardPostType,
+  GetPostsPayload,
+  SearchPostsPayload,
+  SetSearchedPostsPayload,
+  TabsNames,
+} from "../../Utils";
 
 type PostStateType = {
   cardsList: CardListType | [];
@@ -7,6 +14,10 @@ type PostStateType = {
   singlePost: CardPostType | null;
   isPostLoading: boolean;
   cardsCount: number;
+  isSearchPostsLoading: boolean;
+  searchedPostsCount: number;
+  searchedPosts: CardListType;
+  activeTab: TabsNames;
 };
 
 const INITIAL_STATE: PostStateType = {
@@ -15,6 +26,10 @@ const INITIAL_STATE: PostStateType = {
   singlePost: null,
   isPostLoading: false,
   cardsCount: 0,
+  isSearchPostsLoading: false,
+  searchedPostsCount: 0,
+  searchedPosts: [],
+  activeTab: TabsNames.Articles,
 };
 
 const postsReducer = createSlice({
@@ -36,6 +51,22 @@ const postsReducer = createSlice({
     setPostsLoading: (state, action: PayloadAction<boolean>) => {
       state.isPostsLoading = action.payload;
     },
+    getBlogPosts: (state, action: PayloadAction<GetPostsPayload>) => {},
+    getBlogPostsCount: (state, action: PayloadAction<undefined>) => {},
+
+    //   state.cardsCount = action.payload;
+    // },
+    // setBlogCardsList: (state, action: PayloadAction<CardListType>) => {
+    //   state.cardsList = action.payload.map((card) => {
+    //     return {
+    //       ...card,
+    //     };
+    //   });
+    // },
+    // setBlogPostsLoading: (state, action: PayloadAction<boolean>) => {
+    //   state.isPostsLoading = action.payload;
+    // },
+
     getSinglePost: (state, action: PayloadAction<string>) => {},
     setSinglePost: (state, action: PayloadAction<CardPostType>) => {
       state.singlePost = action.payload;
@@ -43,7 +74,31 @@ const postsReducer = createSlice({
     setSinglePostLoading: (state, action: PayloadAction<boolean>) => {
       state.isPostLoading = action.payload;
     },
-    searchForPosts: (state, action: PayloadAction<string>) => {},
+    getSingleBlogPost: (state, action: PayloadAction<string>) => {},
+
+    searchForPosts: (state, action: PayloadAction<SearchPostsPayload>) => {
+      // !! state.searchString = action.payload; для по буквенного поиска
+    },
+    setSearchPostsLoading: (state, action: PayloadAction<boolean>) => {
+      state.isSearchPostsLoading = action.payload;
+    },
+    setSearchedPosts: (
+      state,
+      action: PayloadAction<SetSearchedPostsPayload>
+    ) => {
+      const { isOverwrite, data } = action.payload;
+      if (isOverwrite) {
+        state.searchedPosts = data;
+      } else {
+        state.searchedPosts.push(...data);
+      }
+    },
+    setSearchedPostsCount: (state, action: PayloadAction<number>) => {
+      state.searchedPostsCount = action.payload;
+    },
+    setActiveTab: (state, action: PayloadAction<TabsNames>) => {
+      state.activeTab = action.payload;
+    },
   },
 });
 
@@ -59,4 +114,11 @@ export const {
   getPostsCount,
   setCardsCount,
   searchForPosts,
+  setSearchPostsLoading,
+  setSearchedPosts,
+  setSearchedPostsCount,
+  setActiveTab,
+  getBlogPosts,
+  getBlogPostsCount,
+  getSingleBlogPost,
 } = postsReducer.actions;

@@ -12,13 +12,18 @@ const PagesWrapper = () => {
   const location = useLocation();
   const { theme } = useThemeContext();
   const isDarkTheme = theme === Theme.Dark;
+
+  const [openInput, setOpenInput] = useState(false);
   return (
     <div
       className={classNames(styles.app, {
         [styles.app_Dark]: isDarkTheme,
       })}
     >
-      <Header></Header>
+      <Header
+        onClick={() => setOpenInput(!openInput)}
+        openInput={openInput}
+      ></Header>
       {location.pathname === PathNames.Home ? <Blog></Blog> : <Outlet></Outlet>}
       <Footer></Footer>
     </div>

@@ -6,22 +6,30 @@ import { POST_MOCK } from "../../App";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import PostsSelectors from "../../Redux/selectors/postsSelectors";
-import { getSinglePost } from "../../Redux/reducers/postsreducer";
+import {
+  getSingleBlogPost,
+  getSinglePost,
+} from "../../Redux/reducers/postsreducer";
 import Lottie from "lottie-react";
 import animation from "../../lotties/transfer.json";
+import { TabsNames } from "../../Utils";
 
 const PostContent = () => {
   const params = useParams();
   const dispatch = useDispatch();
 
   const post = useSelector(PostsSelectors.getSinglePost);
+  const blogPost = useSelector(PostsSelectors.getSingleBlogPost);
   const isLoading = useSelector(PostsSelectors.getSinglePostLoading);
+  const activeTab = useSelector(PostsSelectors.getActiveTab);
 
   const { id } = params;
 
   useEffect(() => {
     if (id) {
-      dispatch(getSinglePost(id));
+      dispatch(
+        activeTab === TabsNames.News ? getSingleBlogPost(id) : getSinglePost(id)
+      );
     }
   }, [id]);
   console.log(post);

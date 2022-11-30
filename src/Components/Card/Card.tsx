@@ -8,22 +8,26 @@ import { Theme, useThemeContext } from "../../Context/ThemeContext/Context";
 const Card: FC<CardPostProps> = ({ post }) => {
   const { theme } = useThemeContext();
   const isDarkTheme = theme === Theme.Dark;
-  const { imageUrl, summary, title, publishedAt, id } = post;
+  const { imageUrl, summary, title, updatedAt, id } = post;
   const navigate = useNavigate();
 
   const onNavigateToPost = () => {
     navigate(`/content/${id}`);
   };
 
-  function convertDate(publishedAt: string | number | Date) {
-    const data = new Date(publishedAt);
+  function convertDate(updatedAt: string | number | Date) {
+    const data = new Date(updatedAt);
     return data.toLocaleDateString("en-us", {
       year: "numeric",
       month: "short",
       day: "numeric",
     });
   }
-  console.log(convertDate(publishedAt));
+
+  const data1 = new Date(updatedAt);
+
+  // console.log(data1.getMonth());
+
   return (
     <div
       className={classNames(styles.cardWrap, {
@@ -44,7 +48,7 @@ const Card: FC<CardPostProps> = ({ post }) => {
             [styles.cardWrap_textWrap_dateText_Dark]: isDarkTheme,
           })}
         >
-          {convertDate(publishedAt)}
+          {convertDate(updatedAt)}
         </div>
         <div
           className={classNames(styles.cardWrap_textWrap_titleText, {

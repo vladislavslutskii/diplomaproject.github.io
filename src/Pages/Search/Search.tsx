@@ -1,9 +1,17 @@
 import classNames from "classnames";
-import React from "react";
+import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { useLocation, useNavigate } from "react-router-dom";
 import Paginate from "../../Components/Paginate";
 import SearchList from "../../Components/SearchList";
 import { Theme, useThemeContext } from "../../Context/ThemeContext/Context";
 import styles from "./Search.module.scss";
+import PostsSelectors from "../../Redux/selectors/postsSelectors";
+import { PathNames } from "../Router";
+
+type LocationState = {
+  searchElement: string;
+};
 
 const Search = () => {
   const { theme, onChangeTheme } = useThemeContext();
@@ -122,6 +130,21 @@ const Search = () => {
         "Astronauts prep for new solar arrays on nearly seven-hour spacewalk",
     },
   ];
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const { searchElement } = location.state as LocationState;
+
+  const searchedPosts = useSelector(PostsSelectors.getSearchedPosts);
+  const isSearchPostsLoading = useSelector(
+    PostsSelectors.getSearchedPostsLoading
+  );
+
+  useEffect(() => {
+    if (searchElement.length === 0) {
+      navigate(PathNames.Home);
+    }
+  }, [searchElement]);
 
   return (
     <div
@@ -139,14 +162,17 @@ const Search = () => {
             [styles.Search_container_titleWrap_Dark]: isDarkTheme,
           })}
         >
-          Search result "Astronauts"
+          Search results "{searchElement}"
         </div>
         <div className={styles.Search_container_CardsListWrap}>
-          {/* <SearchList searchedPosts={POST_MOCK}></SearchList> */}
+          <SearchList searchedPosts={searchedPosts}></SearchList>
         </div>
-        <div className={styles.Search_container_Paginate}>
-          <Paginate pagesCount={`16`}></Paginate>
-        </div>
+
+        {!isSearchPostsLoading && searchedPosts ? (
+          <div className={classNames(styles.Search__container__Paginate, {})}>
+            <Paginate pagesCount={`16`}></Paginate>
+          </div>
+        ) : null}
       </div>
     </div>
   );

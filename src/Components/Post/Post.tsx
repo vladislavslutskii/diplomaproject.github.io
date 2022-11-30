@@ -67,27 +67,34 @@ const Post: FC<PostProps> = ({ post }) => {
         </div>
         <div className={styles.Post_container_buttonsWrap}>
           <div className={styles.Post_container_buttonsWrap_rightSide}>
-            <Button
-              type={ButtonType.ButtonIcon}
-              title={null}
-              onClick={() => alert(`Я кнопка - иконка(Лайк)`)}
-              className={styles.ButtonIconTvitter}
-              icon={<Tvitter width={24} height={24}></Tvitter>}
-            ></Button>
-            <Button
-              type={ButtonType.ButtonIcon}
-              title={null}
-              onClick={() => alert(`Я кнопка - иконка(Дизлайк)`)}
-              className={styles.ButtonIconFacebook}
-              icon={<Facebook width={24} height={24}></Facebook>}
-            ></Button>
-            <Button
-              type={ButtonType.ButtonIcon}
-              title={null}
-              onClick={() => alert(`Я кнопка - иконка(Дизлайк)`)}
-              className={styles.ButtonIconOther}
-              icon={<Other width={24} height={24}></Other>}
-            ></Button>
+            <div
+              className={classNames(styles.Post_container_buttonsWrap_buttons, {
+                [styles.Post_container_buttonsWrap_buttons_Dark]: isDarkTheme,
+              })}
+            >
+              <a target="_blank" href="https://twitter.com/?lang=ru">
+                <Tvitter width={24} height={24}></Tvitter>
+              </a>
+            </div>
+            <div
+              className={classNames(styles.Post_container_buttonsWrap_buttons, {
+                [styles.Post_container_buttonsWrap_buttons_Dark]: isDarkTheme,
+              })}
+            >
+              <a
+                target="_blank"
+                href="https://www.facebook.com/campaign/landing.php?campaign_id=17872459592&extra_1=s%7Cc%7C613001315951%7Cb%7Cfacebook%20%27%7C&placement=&creative=613001315951&keyword=facebook%20%27&partner_id=googlesem&extra_2=campaignid%3D17872459592%26adgroupid%3D145027591648%26matchtype%3Db%26network%3Dg%26source%3Dnotmobile%26search_or_content%3Ds%26device%3Dc%26devicemodel%3D%26adposition%3D%26target%3D%26targetid%3Dkwd-327195741349%26loc_physical_ms%3D9062749%26loc_interest_ms%3D%26feeditemid%3D%26param1%3D%26param2%3D&gclid=Cj0KCQiAm5ycBhCXARIsAPldzoVRH3zyraXIJ1bfWxyKBuKZzLUcNyHV0CxDyQLpAmtvEW6Xjme72Y0aAoHNEALw_wcB"
+              >
+                <Facebook width={24} height={24}></Facebook>
+              </a>
+            </div>
+            <div
+              className={classNames(styles.Post_container_buttonsWrap_buttons, {
+                [styles.Post_container_buttonsWrap_buttons_Dark]: isDarkTheme,
+              })}
+            >
+              <Other width={24} height={24}></Other>
+            </div>
           </div>
         </div>
       </div>

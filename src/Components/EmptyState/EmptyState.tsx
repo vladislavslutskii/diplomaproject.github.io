@@ -4,7 +4,7 @@ import styles from "./EmptyState.module.scss";
 import { useThemeContext, Theme } from "../../Context/ThemeContext/Context";
 import classnames from "classnames";
 import { Link } from "react-router-dom";
-// import { PathNames } from "../../Pages/Router";
+import { PathNames } from "../../Pages/Router";
 
 const EmptyState = () => {
   const { theme, onChangeTheme } = useThemeContext();
@@ -36,14 +36,14 @@ const EmptyState = () => {
           Try to adjusting your search
         </div>
 
-        <a
-          // to={PathNames.Home}
+        <Link
+          to={PathNames.Home}
           className={classnames(styles.goHome, {
             [styles.goHome__Dark]: theme === Theme.Dark,
           })}
         >
           <div>Go Home</div>
-        </a>
+        </Link>
       </div>
     </div>
   );

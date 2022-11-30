@@ -7,8 +7,10 @@ import styles from "./Header.module.scss";
 import { Theme, useThemeContext } from "../../Context/ThemeContext/Context";
 import { PathNames } from "../../Pages/Router";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { searchForPosts } from "../../Redux/reducers/postsreducer";
 
-const Header = () => {
+const Header = ({ onClick, openInput }: any) => {
   const { theme } = useThemeContext();
   const isDarkTheme = theme === Theme.Dark;
   const [value, setValue] = useState<string>("");
@@ -17,8 +19,6 @@ const Header = () => {
   };
   const navigate = useNavigate();
 
-  const [openInput, setOpenInput] = useState(false);
-
   const cliclToLogo = () => {
     navigate(PathNames.Home);
   };
@@ -26,7 +26,18 @@ const Header = () => {
     navigate(PathNames.SignIn);
   };
 
-  const OnSearch;
+  const dispatch = useDispatch();
+
+  const onSearch = () => {
+    if (value.length > 0) {
+      dispatch(
+        searchForPosts({ title_contains: value, _start: 0, isOverwrite: true })
+      );
+      navigate(PathNames.Search, { state: { searchElement: value } });
+      setValue("");
+      onClick();
+    }
+  };
 
   return (
     <nav
@@ -63,6 +74,7 @@ const Header = () => {
               className={classNames(styles.searchIcon, {
                 [styles.searchIcon_Dark]: isDarkTheme,
               })}
+              onClick={onSearch}
             >
               <HeaderSearch width={`24`} height={`24`}></HeaderSearch>
             </div>
@@ -71,7 +83,7 @@ const Header = () => {
               className={classNames(styles.cancelIcon, {
                 [styles.cancelIcon_Dark]: isDarkTheme,
               })}
-              onClick={() => setOpenInput(!openInput)}
+              onClick={onClick}
             >
               <IconCancel width={`16`} height={`16`}></IconCancel>
             </div>
@@ -89,7 +101,7 @@ const Header = () => {
             className={classNames(styles.searchIcon, {
               [styles.searchIcon_Dark]: isDarkTheme,
             })}
-            onClick={() => setOpenInput(!openInput)}
+            onClick={onClick}
           >
             <HeaderSearch width={`24`} height={`24`}></HeaderSearch>
           </div>
