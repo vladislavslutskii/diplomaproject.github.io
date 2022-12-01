@@ -6,6 +6,7 @@ import {
   getPostsCount,
   getSingleBlogPost,
   getSinglePost,
+  searchForBlogPosts,
   searchForPosts,
   setCardsCount,
   setCardsList,
@@ -106,6 +107,26 @@ function* getSearchedPostsWorker(action: PayloadAction<SearchPostsPayload>) {
   yield put(setSearchPostsLoading(false));
 }
 
+function* getSearchedBlogPostsWorker(
+  action: PayloadAction<SearchPostsPayload>
+) {
+  yield put(setSearchPostsLoading(true));
+  const { _start, isOverwrite, title_contains } = action.payload;
+
+  const { data, status, problem } = yield call(
+    Api.getSearchedBlogPosts,
+    title_contains,
+    _start
+  );
+  if (status === 200 && data) {
+    // yield put(setSearchedPostsCount(data.count));
+    yield put(setSearchedPosts({ data: data, isOverwrite }));
+  } else {
+    console.log("Error getting search posts", problem);
+  }
+  yield put(setSearchPostsLoading(false));
+}
+
 export default function* postsSagaWatcher() {
   yield all([
     takeLatest(getPosts, getPostsWorker),
@@ -115,5 +136,6 @@ export default function* postsSagaWatcher() {
     takeLatest(getBlogPosts, getBlogPostsWorker),
     takeLatest(getBlogPostsCount, getBlogPostsCountWorker),
     takeLatest(getSingleBlogPost, getSingleBlogPostWorker),
+    takeLatest(searchForBlogPosts, getSearchedBlogPostsWorker),
   ]);
 }

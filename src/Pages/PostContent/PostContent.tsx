@@ -19,7 +19,7 @@ const PostContent = () => {
   const dispatch = useDispatch();
 
   const post = useSelector(PostsSelectors.getSinglePost);
-  const blogPost = useSelector(PostsSelectors.getSingleBlogPost);
+
   const isLoading = useSelector(PostsSelectors.getSinglePostLoading);
   const activeTab = useSelector(PostsSelectors.getActiveTab);
 

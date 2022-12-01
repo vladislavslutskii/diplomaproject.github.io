@@ -99,6 +99,9 @@ const postsReducer = createSlice({
     setActiveTab: (state, action: PayloadAction<TabsNames>) => {
       state.activeTab = action.payload;
     },
+    searchForBlogPosts: (state, action: PayloadAction<SearchPostsPayload>) => {
+      // !! state.searchString = action.payload; для по буквенного поиска
+    },
   },
 });
 
@@ -121,4 +124,5 @@ export const {
   getBlogPosts,
   getBlogPostsCount,
   getSingleBlogPost,
+  searchForBlogPosts,
 } = postsReducer.actions;

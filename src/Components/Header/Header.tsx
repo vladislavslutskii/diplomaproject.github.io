@@ -7,8 +7,13 @@ import styles from "./Header.module.scss";
 import { Theme, useThemeContext } from "../../Context/ThemeContext/Context";
 import { PathNames } from "../../Pages/Router";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { searchForPosts } from "../../Redux/reducers/postsreducer";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  searchForBlogPosts,
+  searchForPosts,
+} from "../../Redux/reducers/postsreducer";
+import PostsSelectors from "../../Redux/selectors/postsSelectors";
+import { TabsNames } from "../../Utils";
 
 const Header = ({ onClick, openInput }: any) => {
   const { theme } = useThemeContext();
@@ -27,11 +32,22 @@ const Header = ({ onClick, openInput }: any) => {
   };
 
   const dispatch = useDispatch();
+  const activeTab = useSelector(PostsSelectors.getActiveTab);
 
   const onSearch = () => {
     if (value.length > 0) {
       dispatch(
-        searchForPosts({ title_contains: value, _start: 0, isOverwrite: true })
+        activeTab === TabsNames.News
+          ? searchForBlogPosts({
+              title_contains: value,
+              _start: 0,
+              isOverwrite: true,
+            })
+          : searchForPosts({
+              title_contains: value,
+              _start: 0,
+              isOverwrite: true,
+            })
       );
       navigate(PathNames.Search, { state: { searchElement: value } });
       setValue("");
