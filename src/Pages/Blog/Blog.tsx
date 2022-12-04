@@ -18,9 +18,7 @@ import Paginate from "../../Components/Paginate";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getBlogPosts,
-  getBlogPostsCount,
   getPosts,
-  getPostsCount,
   setActiveTab,
 } from "../../Redux/reducers/postsreducer";
 import PostsSelectors from "../../Redux/selectors/postsSelectors";
@@ -94,7 +92,6 @@ const Blog = () => {
         ? getBlogPosts({ _start, _sort: order })
         : getPosts({ _start, _sort: order })
     );
-    dispatch(blogPost ? getBlogPostsCount() : getPostsCount());
   }, [page, blogPost, order]);
 
   const onPageChange = ({ selected }: { selected: number }) => {

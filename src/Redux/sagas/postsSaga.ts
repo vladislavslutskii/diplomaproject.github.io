@@ -30,6 +30,7 @@ function* getPostsWorker(action: PayloadAction<GetPostsPayload>) {
   } else {
     console.log(problem);
   }
+  yield getPostsCountWorker();
   yield put(setPostsLoading(false));
 }
 function* getPostsCountWorker() {
@@ -54,6 +55,7 @@ function* getBlogPostsWorker(action: PayloadAction<GetPostsPayload>) {
   } else {
     console.log(problem);
   }
+  yield getBlogPostsCountWorker();
   yield put(setPostsLoading(false));
 }
 function* getBlogPostsCountWorker() {
