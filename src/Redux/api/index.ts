@@ -5,18 +5,28 @@ const API = create({
   baseURL: "https://api.spaceflightnewsapi.net/",
 });
 
-const getPostsList = (_start: number, _sort: string) => {
+const getPostsList = (
+  _start: number,
+  _sort?: string,
+  publishedAt_gt?: string
+) => {
   return API.get("/v3/articles", {
     _limit: PER_PAGE,
     _start,
     _sort,
+    publishedAt_gt,
   });
 };
-const getBlogPostList = (_start: number, _sort: string) => {
+const getBlogPostList = (
+  _start: number,
+  _sort?: string,
+  publishedAt_gt?: string
+) => {
   return API.get("/v3/blogs", {
     _limit: PER_PAGE,
     _start,
     _sort,
+    publishedAt_gt,
   });
 };
 const getPostsCount = () => {
@@ -41,6 +51,31 @@ const getSearchedBlogPosts = (title_contains: string, _start: number) => {
   return API.get("/v3/blogs", { title_contains, _limit: PER_PAGE, _start });
 };
 
+const getPostsByButton = (
+  _start: number,
+  publishedAt_gt?: string,
+  _sort?: string
+) => {
+  return API.get("/v3/articles", {
+    _limit: PER_PAGE,
+    _start,
+    _sort,
+    publishedAt_gt,
+  });
+};
+const getPostBlogListByButton = (
+  _start: number,
+  publishedAt_gt?: string,
+  _sort?: string
+) => {
+  return API.get("/v3/blogs", {
+    _limit: PER_PAGE,
+    _start,
+    _sort,
+    publishedAt_gt,
+  });
+};
+
 export default {
   getPostsList,
   getPost,
@@ -50,4 +85,6 @@ export default {
   getBlogPostCount,
   getBlogPost,
   getSearchedBlogPosts,
+  getPostsByButton,
+  getPostBlogListByButton,
 };

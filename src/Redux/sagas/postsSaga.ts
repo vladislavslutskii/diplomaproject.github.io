@@ -3,6 +3,8 @@ import {
   getBlogPosts,
   getBlogPostsCount,
   getPosts,
+  getPostsBlogBtn,
+  getPostsBtn,
   getPostsCount,
   getSingleBlogPost,
   getSinglePost,
@@ -23,14 +25,22 @@ import { GetPostsPayload, SearchPostsPayload } from "../../Utils";
 
 function* getPostsWorker(action: PayloadAction<GetPostsPayload>) {
   yield put(setPostsLoading(true));
-  const { _start, _sort } = action.payload;
-  const { data, status, problem } = yield call(Api.getPostsList, _start, _sort);
+
+  const { _start, _sort, publishedAt_gt } = action.payload;
+
+  const { data, status, problem } = yield call(
+    Api.getPostsList,
+    _start,
+    _sort,
+    publishedAt_gt
+  );
   if (status === 200 && data) {
     yield put(setCardsList(data));
   } else {
     console.log(problem);
   }
   yield getPostsCountWorker();
+
   yield put(setPostsLoading(false));
 }
 function* getPostsCountWorker() {
@@ -44,11 +54,12 @@ function* getPostsCountWorker() {
 
 function* getBlogPostsWorker(action: PayloadAction<GetPostsPayload>) {
   yield put(setPostsLoading(true));
-  const { _start, _sort } = action.payload;
+  const { _start, _sort, publishedAt_gt } = action.payload;
   const { data, status, problem } = yield call(
     Api.getBlogPostList,
     _start,
-    _sort
+    _sort,
+    publishedAt_gt
   );
   if (status === 200 && data) {
     yield put(setCardsList(data));
@@ -129,6 +140,46 @@ function* getSearchedBlogPostsWorker(
   yield put(setSearchPostsLoading(false));
 }
 
+function* getPostByBtnWorker(action: PayloadAction<GetPostsPayload>) {
+  yield put(setPostsLoading(true));
+
+  const { _start, _sort, publishedAt_gt } = action.payload;
+
+  const { data, status, problem } = yield call(
+    Api.getPostsByButton,
+    _start,
+    publishedAt_gt,
+    _sort
+  );
+
+  if (status === 200 && data) {
+    yield put(setCardsList(data));
+  } else {
+    console.log(problem);
+  }
+  yield put(setPostsLoading(false));
+}
+
+function* getPostBlogByBtnWorker(action: PayloadAction<GetPostsPayload>) {
+  yield put(setPostsLoading(true));
+
+  const { _start, _sort, publishedAt_gt } = action.payload;
+
+  const { data, status, problem } = yield call(
+    Api.getPostBlogListByButton,
+    _start,
+    publishedAt_gt,
+    _sort
+  );
+
+  if (status === 200 && data) {
+    yield put(setCardsList(data));
+  } else {
+    console.log(problem);
+  }
+  yield put(setPostsLoading(false));
+}
+
 export default function* postsSagaWatcher() {
   yield all([
     takeLatest(getPosts, getPostsWorker),
@@ -139,5 +190,7 @@ export default function* postsSagaWatcher() {
     takeLatest(getBlogPostsCount, getBlogPostsCountWorker),
     takeLatest(getSingleBlogPost, getSingleBlogPostWorker),
     takeLatest(searchForBlogPosts, getSearchedBlogPostsWorker),
+    takeLatest(getPostsBtn, getPostByBtnWorker),
+    takeLatest(getPostsBlogBtn, getPostBlogByBtnWorker),
   ]);
 }

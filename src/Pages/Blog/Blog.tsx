@@ -4,6 +4,7 @@ import { Theme, useThemeContext } from "../../Context/ThemeContext/Context";
 import styles from "./Blog.module.scss";
 import Title from "../../Components/Title";
 import {
+  ButtonSort,
   DEFAULT_PAGE_NUMBER,
   PER_PAGE,
   SortOrder,
@@ -24,6 +25,59 @@ import {
 import PostsSelectors from "../../Redux/selectors/postsSelectors";
 import Lottie from "lottie-react";
 import animation from "../../lotties/transfer.json";
+import ButtonGroup from "../../Components/ButtonGroup";
+import moment from "moment";
+import EmptyState from "../../Components/EmptyState";
+
+const TABS = [
+  {
+    key: TabsNames.Articles,
+    title: "Articles",
+    disabled: false,
+  },
+  {
+    key: TabsNames.News,
+    title: "News",
+    disabled: false,
+  },
+];
+
+const OPTIONS = [
+  {
+    key: SortOrder.Initial,
+    title: "Initial",
+    value: SortOrder.Initial,
+  },
+  {
+    key: SortOrder.Title,
+    title: "Title",
+    value: SortOrder.Title,
+  },
+  {
+    key: SortOrder.Date,
+    title: "Date",
+    value: SortOrder.Date,
+  },
+];
+
+const BUTTON_GROUP = [
+  {
+    key: ButtonSort.Day,
+    title: "Day",
+  },
+  {
+    key: ButtonSort.Week,
+    title: "Week",
+  },
+  {
+    key: ButtonSort.Month,
+    title: "Month",
+  },
+  {
+    key: ButtonSort.Year,
+    title: "Year",
+  },
+];
 
 const Blog = () => {
   const { theme, onChangeTheme } = useThemeContext();
@@ -32,7 +86,8 @@ const Blog = () => {
 
   const [order, setOrder] = useState(SortOrder.Initial);
   const isPostsLoading = useSelector(PostsSelectors.getPostsLoading);
-
+  const [activeBtn, setActiveBtn] = useState<ButtonSort>();
+  const dispatch = useDispatch();
   const onTabClick = (id: TabsNames) => {
     dispatch(setActiveTab(id));
   };
@@ -43,61 +98,30 @@ const Blog = () => {
 
   const cardsList = useSelector(PostsSelectors.getCardsList);
 
-  const tabs = useMemo(
-    () => [
-      {
-        key: TabsNames.Articles,
-        title: "Articles",
-        disabled: false,
-      },
-      {
-        key: TabsNames.News,
-        title: "News",
-        disabled: false,
-      },
-    ],
-    []
-  );
-
-  const options = [
-    {
-      key: SortOrder.Initial,
-      title: "Initial",
-      value: SortOrder.Initial,
-    },
-    {
-      key: SortOrder.Title,
-      title: "Title",
-      value: SortOrder.Title,
-    },
-    {
-      key: SortOrder.Date,
-      title: "Date",
-      value: SortOrder.Date,
-    },
-  ];
-
-  const dispatch = useDispatch();
-
   const blogPost = activeTab === TabsNames.News;
-  // newsPost ? PostsSelectors.getBlogPost : PostsSelectors.getCardsList;
-  // newsPost ? PostsSelectors.getBlogCardsCount : PostsSelectors.getCardsCount;
   const pagesCount = Math.ceil(
     blogPost ? cardsBlogCount / PER_PAGE : cardsCount / PER_PAGE
   );
   useEffect(() => {
     const _start = (page - 1) * PER_PAGE;
+    const dateAgo = moment().add(-1, activeBtn).format("YYYY-MM-DDThh:mm:ss");
+    const publishedAt = activeBtn ? dateAgo : undefined;
+    const sort = activeBtn ? SortOrder.Date : order;
     dispatch(
       blogPost
-        ? getBlogPosts({ _start, _sort: order })
-        : getPosts({ _start, _sort: order })
+        ? getBlogPosts({ _start, _sort: sort, publishedAt_gt: publishedAt })
+        : getPosts({ _start, _sort: sort, publishedAt_gt: publishedAt })
     );
-  }, [page, blogPost, order]);
+  }, [page, blogPost, order, activeBtn]);
 
   const onPageChange = ({ selected }: { selected: number }) => {
     setPage(selected + 1);
   };
 
+  const onBtnGroupClick = (id: ButtonSort) => {
+    setActiveBtn(id);
+  };
+  console.log(cardsList);
   return (
     <div
       className={classNames(styles.Blog, {
@@ -118,7 +142,7 @@ const Blog = () => {
         </div>
         <div className={styles.Blog_container_tabWrap}>
           {!isPostsLoading ? (
-            <Tabs tabs={tabs} onClick={onTabClick} activeTab={activeTab}></Tabs>
+            <Tabs tabs={TABS} onClick={onTabClick} activeTab={activeTab}></Tabs>
           ) : null}
         </div>
         <div
@@ -132,31 +156,11 @@ const Blog = () => {
                 [styles.filterMenu_buttonWrap_Dark]: isDarkTheme,
               })}
             >
-              <Button
-                className={styles.filterMenu_buttonWrap_buttons}
-                title={`Day`}
-                onClick={() => alert(`1`)}
-                type={ButtonType.Primary}
-                disabled={false}
-              ></Button>
-              <Button
-                className={styles.filterMenu_buttonWrap_buttons}
-                title={`Week`}
-                onClick={() => alert(`1`)}
-                type={ButtonType.Primary}
-                disabled={true}
-              ></Button>
-              <Button
-                className={styles.filterMenu_buttonWrap_buttons}
-                title={`Month`}
-                onClick={() => alert(`1`)}
-                type={ButtonType.Primary}
-              ></Button>
-              <Button
-                title={`Year`}
-                onClick={() => alert(`1`)}
-                type={ButtonType.Primary}
-              ></Button>
+              <ButtonGroup
+                buttonGroup={BUTTON_GROUP}
+                onClick={onBtnGroupClick}
+                activeBtn={activeBtn}
+              />
             </div>
           ) : null}
           <div
@@ -168,7 +172,7 @@ const Blog = () => {
               <Select
                 selectValue={order}
                 onChange={(event: any) => setOrder(event.target.value)}
-                options={options}
+                options={OPTIONS}
               />
             ) : null}
           </div>
@@ -185,13 +189,16 @@ const Blog = () => {
               ></Lottie>
             </div>
           )}
+          {cardsList.lenght === 0 ? null : "Sorry"}
         </div>
         <div className={styles.Blog_container_Paginate}>
-          <Paginate
-            pagesCount={pagesCount}
-            onPageChange={onPageChange}
-            page={page}
-          ></Paginate>
+          {activeBtn == null ? (
+            <Paginate
+              pagesCount={pagesCount}
+              onPageChange={onPageChange}
+              page={page}
+            ></Paginate>
+          ) : null}
         </div>
       </div>
     </div>

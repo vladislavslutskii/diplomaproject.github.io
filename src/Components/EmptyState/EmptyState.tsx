@@ -8,6 +8,7 @@ import { PathNames } from "../../Pages/Router";
 
 const EmptyState = () => {
   const { theme, onChangeTheme } = useThemeContext();
+
   return (
     <div
       className={classnames(styles.emptyStateWrap, {
@@ -36,14 +37,16 @@ const EmptyState = () => {
           Try to adjusting your search
         </div>
 
-        <Link
-          to={PathNames.Home}
-          className={classnames(styles.goHome, {
-            [styles.goHome__Dark]: theme === Theme.Dark,
-          })}
-        >
-          <div>Go Home</div>
-        </Link>
+        {
+          <Link
+            to={PathNames.Home}
+            className={classnames(styles.goHome, {
+              [styles.goHome__Dark]: theme === Theme.Dark,
+            })}
+          >
+            <div>Go Home</div>
+          </Link>
+        }
       </div>
     </div>
   );

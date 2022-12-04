@@ -16,7 +16,8 @@ export type CardPostType = {
 };
 export type GetPostsPayload = {
   _start: number;
-  _sort: string;
+  _sort?: string;
+  publishedAt_gt?: string;
 };
 export type CardListType = Array<CardPostType>;
 
@@ -29,3 +30,9 @@ export type SetSearchedPostsPayload = {
   data: CardListType;
   isOverwrite: boolean;
 };
+export enum ButtonSort {
+  Day = "day",
+  Week = "week",
+  Month = "month",
+  Year = "year",
+}

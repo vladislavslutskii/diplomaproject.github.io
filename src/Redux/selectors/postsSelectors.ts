@@ -14,4 +14,5 @@ export default {
   getBlogPost: (state: any) => state.postsReducer.cardsList,
   getBlogCardsCount: (state: any) => state.postsReducer.cardsCount,
   getSearchedBlogPosts: (state: any) => state.postsReducer.searchedPosts,
+  getActiveBtn: (state: any) => state.postsReducer.activeBtn,
 };

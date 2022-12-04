@@ -8,7 +8,6 @@ import { ButtonClassnamesType, ButtonType, ButtonPropsType } from "./types";
 const BUTTON_TYPE_CLASSNAMES: ButtonClassnamesType = {
   [ButtonType.Primary]: styles.primary,
   [ButtonType.Secondary]: styles.secondary,
-  [ButtonType.ButtonIcon]: styles.ButtonIcon,
 };
 
 const Button: FC<ButtonPropsType> = ({
@@ -17,7 +16,7 @@ const Button: FC<ButtonPropsType> = ({
   className,
   disabled,
   type,
-  icon,
+  children,
 }) => {
   const { theme } = useThemeContext();
   const isDarkTheme = theme === Theme.Dark;
@@ -34,8 +33,7 @@ const Button: FC<ButtonPropsType> = ({
       )}
       disabled={disabled}
     >
-      {icon}
-      {title}
+      {title || children}
     </button>
   );
 };

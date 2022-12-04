@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import {
+  ButtonSort,
   CardListType,
   CardPostType,
   GetPostsPayload,
@@ -18,6 +19,7 @@ type PostStateType = {
   searchedPostsCount: number;
   searchedPosts: CardListType;
   activeTab: TabsNames;
+  activeBtn: ButtonSort;
 };
 
 const INITIAL_STATE: PostStateType = {
@@ -30,6 +32,7 @@ const INITIAL_STATE: PostStateType = {
   searchedPostsCount: 0,
   searchedPosts: [],
   activeTab: TabsNames.Articles,
+  activeBtn: ButtonSort.Day,
 };
 
 const postsReducer = createSlice({
@@ -53,20 +56,6 @@ const postsReducer = createSlice({
     },
     getBlogPosts: (state, action: PayloadAction<GetPostsPayload>) => {},
     getBlogPostsCount: (state, action: PayloadAction<undefined>) => {},
-
-    //   state.cardsCount = action.payload;
-    // },
-    // setBlogCardsList: (state, action: PayloadAction<CardListType>) => {
-    //   state.cardsList = action.payload.map((card) => {
-    //     return {
-    //       ...card,
-    //     };
-    //   });
-    // },
-    // setBlogPostsLoading: (state, action: PayloadAction<boolean>) => {
-    //   state.isPostsLoading = action.payload;
-    // },
-
     getSinglePost: (state, action: PayloadAction<string>) => {},
     setSinglePost: (state, action: PayloadAction<CardPostType>) => {
       state.singlePost = action.payload;
@@ -102,6 +91,11 @@ const postsReducer = createSlice({
     searchForBlogPosts: (state, action: PayloadAction<SearchPostsPayload>) => {
       // !! state.searchString = action.payload; для по буквенного поиска
     },
+    getPostsBtn: (state, action: PayloadAction<GetPostsPayload>) => {},
+    setActiveBtn: (state, action: PayloadAction<ButtonSort>) => {
+      state.activeBtn = action.payload;
+    },
+    getPostsBlogBtn: (state, action: PayloadAction<GetPostsPayload>) => {},
   },
 });
 
@@ -125,4 +119,6 @@ export const {
   getBlogPostsCount,
   getSingleBlogPost,
   searchForBlogPosts,
+  getPostsBtn,
+  getPostsBlogBtn,
 } = postsReducer.actions;

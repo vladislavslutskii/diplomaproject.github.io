@@ -1,18 +1,18 @@
 import { ReactNode } from "react";
 
 export enum ButtonType {
-  Primary = `primary`,
-  Secondary = `secondary`,
-  ButtonIcon = `ButtonIcon`,
+  Primary = "primary",
+  Secondary = "secondary",
 }
 export type ButtonClassnamesType = {
-  [a in ButtonType]: string;
+  [k in ButtonType]: string;
 };
+
 export type ButtonPropsType = {
-  title: string | null;
+  title?: string;
   onClick?: () => void;
   className?: string;
+  disabled?: boolean;
   type: ButtonType;
-  disabled?: boolean | undefined;
-  icon?: ReactNode | null;
+  children?: ReactNode;
 };
