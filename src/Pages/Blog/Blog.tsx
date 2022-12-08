@@ -1,7 +1,7 @@
-import React, { useEffect, useMemo, useState } from "react";
-import classNames from "classnames";
-import { Theme, useThemeContext } from "../../Context/ThemeContext/Context";
+import React, { useEffect, useState } from "react";
 import styles from "./Blog.module.scss";
+
+import classNames from "classnames";
 import Title from "../../Components/Title";
 import {
   ButtonSort,
@@ -11,12 +11,9 @@ import {
   TabsNames,
 } from "../../Utils";
 import Tabs from "../../Components/Tabs";
-import Button from "../../Components/Button";
-import { ButtonType } from "../../Components/Button/types";
 import Select from "../../Components/Select";
 import CardsList from "../../Components/CardsList";
 import Paginate from "../../Components/Paginate";
-import { useDispatch, useSelector } from "react-redux";
 import {
   getBlogPosts,
   getPosts,
@@ -28,6 +25,9 @@ import animation from "../../lotties/transfer.json";
 import ButtonGroup from "../../Components/ButtonGroup";
 import moment from "moment";
 import EmptyState from "../../Components/EmptyState";
+import PostModalImg from "./Components/PostModalImg";
+import { Theme, useThemeContext } from "../../Context/ThemeContext/Context";
+import { useDispatch, useSelector } from "react-redux";
 
 const TABS = [
   {
@@ -80,28 +80,48 @@ const BUTTON_GROUP = [
 ];
 
 const Blog = () => {
-  const { theme, onChangeTheme } = useThemeContext();
+  const dispatch = useDispatch();
+  const { theme } = useThemeContext();
   const isDarkTheme = theme === Theme.Dark;
   const activeTab = useSelector(PostsSelectors.getActiveTab);
-
-  const [order, setOrder] = useState(SortOrder.Initial);
-  const isPostsLoading = useSelector(PostsSelectors.getPostsLoading);
-  const [activeBtn, setActiveBtn] = useState<ButtonSort>();
-  const dispatch = useDispatch();
-  const onTabClick = (id: TabsNames) => {
-    dispatch(setActiveTab(id));
-  };
-
-  const [page, setPage] = useState(DEFAULT_PAGE_NUMBER);
   const cardsCount = useSelector(PostsSelectors.getCardsCount);
   const cardsBlogCount = useSelector(PostsSelectors.getBlogCardsCount);
-
   const cardsList = useSelector(PostsSelectors.getCardsList);
+  const isPostsLoading = useSelector(PostsSelectors.getPostsLoading);
+  const [page, setPage] = useState(DEFAULT_PAGE_NUMBER);
+  const [order, setOrder] = useState(SortOrder.Initial);
+  const [activeBtn, setActiveBtn] = useState<ButtonSort | undefined>();
+
+  const onTabClick = (id: TabsNames) => {
+    dispatch(setActiveTab(id));
+    setActiveBtn(undefined);
+    setOrder(SortOrder.Initial);
+  };
 
   const blogPost = activeTab === TabsNames.News;
   const pagesCount = Math.ceil(
     blogPost ? cardsBlogCount / PER_PAGE : cardsCount / PER_PAGE
   );
+
+  const onPageChange = ({ selected }: { selected: number }) => {
+    setPage(selected + 1);
+  };
+
+  const onBtnGroupClick = (id: ButtonSort) => {
+    console.log(id);
+    if (activeBtn === id) {
+      setActiveBtn(undefined);
+    } else {
+      setActiveBtn(id);
+      setOrder(SortOrder.Initial);
+    }
+  };
+
+  const onSelectClick = (event: any) => {
+    setOrder(event.target.value);
+    setActiveBtn(undefined);
+  };
+
   useEffect(() => {
     const _start = (page - 1) * PER_PAGE;
     const dateAgo = moment().add(-1, activeBtn).format("YYYY-MM-DDThh:mm:ss");
@@ -114,20 +134,13 @@ const Blog = () => {
     );
   }, [page, blogPost, order, activeBtn]);
 
-  const onPageChange = ({ selected }: { selected: number }) => {
-    setPage(selected + 1);
-  };
-
-  const onBtnGroupClick = (id: ButtonSort) => {
-    setActiveBtn(id);
-  };
-  console.log(cardsList);
   return (
     <div
       className={classNames(styles.Blog, {
         [styles.Blog_Dark]: isDarkTheme,
       })}
     >
+      <PostModalImg></PostModalImg>
       <div
         className={classNames(styles.Blog_container, {
           [styles.Blog_container_Dark]: isDarkTheme,
@@ -140,7 +153,11 @@ const Blog = () => {
         >
           {!isPostsLoading ? <Title title={"Blog"}></Title> : null}
         </div>
-        <div className={styles.Blog_container_tabWrap}>
+        <div
+          className={classNames(styles.Blog_container_tabWrap, {
+            [styles.Blog_container_tabWrap_Dark]: isDarkTheme,
+          })}
+        >
           {!isPostsLoading ? (
             <Tabs tabs={TABS} onClick={onTabClick} activeTab={activeTab}></Tabs>
           ) : null}
@@ -163,6 +180,7 @@ const Blog = () => {
               />
             </div>
           ) : null}
+
           <div
             className={classNames(styles.filterMenu_selectWrap, {
               [styles.filterMenu_selectWrap_Dark]: isDarkTheme,
@@ -171,7 +189,7 @@ const Blog = () => {
             {!isPostsLoading ? (
               <Select
                 selectValue={order}
-                onChange={(event: any) => setOrder(event.target.value)}
+                onChange={onSelectClick}
                 options={OPTIONS}
               />
             ) : null}
@@ -189,7 +207,7 @@ const Blog = () => {
               ></Lottie>
             </div>
           )}
-          {cardsList.lenght === 0 ? null : "Sorry"}
+          {cardsList.length === 0 ? <EmptyState></EmptyState> : null}
         </div>
         <div className={styles.Blog_container_Paginate}>
           {activeBtn == null ? (

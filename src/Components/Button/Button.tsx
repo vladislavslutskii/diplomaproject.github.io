@@ -1,8 +1,8 @@
-import classNames from "classnames";
 import React, { FC } from "react";
-import { Theme, useThemeContext } from "../../Context/ThemeContext/Context";
 import styles from "./Button.module.scss";
 
+import classNames from "classnames";
+import { Theme, useThemeContext } from "../../Context/ThemeContext/Context";
 import { ButtonClassnamesType, ButtonType, ButtonPropsType } from "./types";
 
 const BUTTON_TYPE_CLASSNAMES: ButtonClassnamesType = {

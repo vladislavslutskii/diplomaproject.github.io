@@ -1,6 +1,6 @@
 .navigation {
   width: auto;
-  border-bottom: 1px solid #dadada;
+  // border-bottom: 1px solid #dadada;
   &__list {
     display: flex;
     justify-content: space-between;
@@ -19,7 +19,7 @@
         background: #313037;
         position: absolute;
         left: 0px;
-        bottom: -25px;
+        bottom: -20px;
         transform: scale(0);
         transform-origin: right;
         transition: transform 0.25s;
@@ -40,7 +40,7 @@
           background: #313037;
           position: absolute;
           left: 0px;
-          bottom: -3px;
+          bottom: -2px;
           transform: scale(0);
           transform-origin: right;
           transition: transform 0.25s;
@@ -64,7 +64,7 @@
             background: #dadada;
             position: absolute;
             left: 0px;
-            bottom: -3px;
+            bottom: -2px;
             transform: scale(0);
             transform-origin: right;
             transition: transform 0.25s;
@@ -113,7 +113,7 @@
     background: #313037;
     position: absolute;
     left: 0px;
-    bottom: -2px;
+    bottom: -5px;
     transform: scale(0);
     transform-origin: right;
     transition: transform 0.25s;

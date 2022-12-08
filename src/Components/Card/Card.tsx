@@ -1,19 +1,23 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import styles from "./Card.module.scss";
-import { CardPostProps } from "./types";
+
 import classNames from "classnames";
+import {
+  setPostModalImgVisible,
+  setSelectedPost,
+} from "../../Redux/reducers/postsreducer";
+import { CardPostProps } from "./types";
 import { useNavigate } from "react-router-dom";
 import { Theme, useThemeContext } from "../../Context/ThemeContext/Context";
+import { useDispatch } from "react-redux";
 
 const Card: FC<CardPostProps> = ({ post }) => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const { theme } = useThemeContext();
   const isDarkTheme = theme === Theme.Dark;
-  const { imageUrl, summary, title, updatedAt, id } = post;
-  const navigate = useNavigate();
 
-  const onNavigateToPost = () => {
-    navigate(`/content/${id}`);
-  };
+  const { imageUrl, title, updatedAt, id } = post;
 
   function convertDate(updatedAt: string | number | Date) {
     const data = new Date(updatedAt);
@@ -23,25 +27,34 @@ const Card: FC<CardPostProps> = ({ post }) => {
       day: "numeric",
     });
   }
+  const onNavigateToPost = () => {
+    navigate(`/content/${id}`);
+  };
 
-  const data1 = new Date(updatedAt);
-
-  // console.log(data1.getMonth());
+  const onOpenModalImg = () => {
+    dispatch(setSelectedPost(post));
+    dispatch(setPostModalImgVisible(true));
+  };
 
   return (
     <div
       className={classNames(styles.cardWrap, {
         [styles.cardWrap_Dark]: isDarkTheme,
       })}
-      onClick={onNavigateToPost}
     >
       <div className={styles.cardWrap_imgWrap}>
-        <img className={styles.cardWrap_imgWrap_img} src={imageUrl} alt="#" />
+        <img
+          className={styles.cardWrap_imgWrap_img}
+          onClick={onOpenModalImg}
+          src={imageUrl}
+          alt="#"
+        />
       </div>
       <div
         className={classNames(styles.cardWrap_textWrap, {
           [styles.cardWrap_textWrap_Dark]: isDarkTheme,
         })}
+        onClick={onNavigateToPost}
       >
         <div
           className={classNames(styles.cardWrap_textWrap_dateText, {
@@ -54,6 +67,7 @@ const Card: FC<CardPostProps> = ({ post }) => {
           className={classNames(styles.cardWrap_textWrap_titleText, {
             [styles.cardWrap_textWrap_titleText_Dark]: isDarkTheme,
           })}
+          onClick={onNavigateToPost}
         >
           {title.length > 67 ? title.substr(0, 67) + "..." : title}
         </div>

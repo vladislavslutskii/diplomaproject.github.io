@@ -1,13 +1,15 @@
-import classNames from "classnames";
 import React, { FC } from "react";
+import styles from "./User.module.scss";
+
+import classNames from "classnames";
 import { UserImg } from "../../Assets/Icons";
 import { Theme, useThemeContext } from "../../Context/ThemeContext/Context";
 import { UserPropsType } from "./type";
-import styles from "./User.module.scss";
 
 const User: FC<UserPropsType> = ({ username }) => {
   const { theme } = useThemeContext();
   const isDarkTheme = theme === Theme.Dark;
+
   const caps = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   const res = username.split("").filter(function (l: any) {
     return ~caps.indexOf(l);

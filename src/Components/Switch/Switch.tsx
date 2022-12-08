@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { FC, useState } from "react";
 import Switchs from "react-switch";
 import styles from "./Switch.module.scss";
+import { SwitchTypeProps } from "./types";
 
-const Switch = ({ handleChange, checked }: any) => {
+const Switch: FC<SwitchTypeProps> = ({ handleChange, checked }) => {
   return (
     <Switchs
       onChange={handleChange}

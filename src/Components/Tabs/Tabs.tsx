@@ -1,6 +1,6 @@
 import React, { FC, useState } from "react";
-
 import styles from "./Tabs.module.scss";
+
 import classnames from "classnames";
 import { TabsProps } from "./types";
 import { Theme, useThemeContext } from "../../Context/ThemeContext/Context";

@@ -1,31 +1,26 @@
-import classNames from "classnames";
 import React, { useEffect } from "react";
-import { useSelector } from "react-redux";
-import { useLocation, useNavigate } from "react-router-dom";
+import styles from "./Search.module.scss";
+
+import classNames from "classnames";
+import PostsSelectors from "../../Redux/selectors/postsSelectors";
 import Paginate from "../../Components/Paginate";
 import SearchList from "../../Components/SearchList";
-import { Theme, useThemeContext } from "../../Context/ThemeContext/Context";
-import styles from "./Search.module.scss";
-import PostsSelectors from "../../Redux/selectors/postsSelectors";
 import { PathNames } from "../Router";
-
-type LocationState = {
-  searchElement: string;
-};
+import { useSelector } from "react-redux";
+import { useLocation, useNavigate } from "react-router-dom";
+import { Theme, useThemeContext } from "../../Context/ThemeContext/Context";
+import { LocationState } from "./type";
 
 const Search = () => {
-  const { theme, onChangeTheme } = useThemeContext();
-  const isDarkTheme = theme === Theme.Dark;
-
   const location = useLocation();
   const navigate = useNavigate();
-
-  const { searchElement } = location.state as LocationState;
-
+  const { theme, onChangeTheme } = useThemeContext();
+  const isDarkTheme = theme === Theme.Dark;
   const searchedPosts = useSelector(PostsSelectors.getSearchedPosts);
   const isSearchPostsLoading = useSelector(
     PostsSelectors.getSearchedPostsLoading
   );
+  const { searchElement } = location.state as LocationState;
 
   useEffect(() => {
     if (searchElement.length === 0) {
@@ -57,7 +52,7 @@ const Search = () => {
 
         {!isSearchPostsLoading && !searchedPosts ? (
           <div className={classNames(styles.Search__container__Paginate, {})}>
-            <Paginate pagesCount={`16`}></Paginate>
+            <Paginate pagesCount={16}></Paginate>
           </div>
         ) : null}
       </div>

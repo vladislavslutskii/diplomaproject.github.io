@@ -2,13 +2,15 @@ import React, { useState, FC, useEffect } from "react";
 import styles from "./SignIn.module.scss";
 import classnames from "classnames";
 
-import { useThemeContext, Theme } from "../../Context/ThemeContext/Context";
-import { ButtonType } from "../../Components/Button/types";
 import Input from "../../Components/Input";
 import Button from "../../Components/Button";
 import Title from "../../Components/Title";
 import { Link } from "react-router-dom";
 import { PathNames } from "../Router";
+import { useDispatch } from "react-redux";
+import { useThemeContext, Theme } from "../../Context/ThemeContext/Context";
+import { ButtonType } from "../../Components/Button/types";
+import { LabelProps } from "./type";
 
 const validateEmail = (email: string) => {
   return String(email)
@@ -18,11 +20,10 @@ const validateEmail = (email: string) => {
     );
 };
 
-type LabelProps = {
-  title: string;
-};
-
 const SignIn = () => {
+  const dispatch = useDispatch();
+  const { theme, onChangeTheme } = useThemeContext();
+  const isDarkTheme = theme === Theme.Dark;
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState("");
   const [emailTouched, setEmailTouched] = useState(false);
@@ -30,9 +31,6 @@ const SignIn = () => {
   const [password, setPassword] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [passwordTouched, setPasswordTouched] = useState(false);
-
-  const { theme, onChangeTheme } = useThemeContext();
-  const isDarkTheme = theme === Theme.Dark;
 
   useEffect(() => {
     if (emailTouched && !validateEmail(email)) {
@@ -167,7 +165,6 @@ const SignIn = () => {
             <Button
               type={ButtonType.Primary}
               title={"Sign In"}
-              onClick={onChangeTheme}
               className={styles.buttonAndText__signUpButton}
             />
             <div

@@ -36,3 +36,18 @@ export enum ButtonSort {
   Month = "month",
   Year = "year",
 }
+export type UserActionPayload = {
+  username: string;
+  password: string;
+  email: string;
+};
+
+export type AuthUserPayload = {
+  email: string;
+  password: string;
+};
+export type setUserPayload = {
+  username: string;
+  id: number;
+  email: string;
+};

@@ -1,7 +1,5 @@
 import React from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import { POST_MOCK } from "../../App";
-import Post from "../../Components/Post";
 import PagesWrapper from "../PagesWrapper";
 import PostContent from "../PostContent";
 import Search from "../Search";

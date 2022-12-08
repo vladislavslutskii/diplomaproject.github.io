@@ -1,11 +1,11 @@
 import React, { FC, useState, useEffect } from "react";
+import styles from "./SignUp.module.scss";
 
-import { Link } from "react-router-dom";
+import classnames from "classnames";
 import Input from "../../Components/Input";
 import Button from "../../Components/Button";
 import Title from "../../Components/Title";
-import styles from "./SignUp.module.scss";
-import classnames from "classnames";
+import { Link } from "react-router-dom";
 import { useThemeContext, Theme } from "../../Context/ThemeContext/Context";
 import { PathNames } from "../Router";
 import { useDispatch } from "react-redux";
@@ -94,6 +94,18 @@ const SignUp = () => {
   const { theme, onChangeTheme } = useThemeContext();
   const isDarkTheme = theme === Theme.Dark;
 
+  const a = {
+    username: name,
+    email: email,
+    password: password,
+  };
+
+  // const onAuth = () => {
+  //   localStorage.setItem(`person`, JSON.stringify(a));
+  //   dispatch(createNewUser({ username: name, email, password }));
+  // };
+
+  // console.log(JSON.parse(`person`));
   return (
     <div
       className={classnames(styles.signUp, {
@@ -227,6 +239,7 @@ const SignUp = () => {
               title={"Sign Up"}
               className={styles.buttonAndText__signUpButton}
               disabled={false}
+              // onClick={onAuth}
             />
             <div
               className={classnames(styles.buttonAndText__formFooterText, {

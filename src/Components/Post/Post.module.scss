@@ -1,5 +1,7 @@
 .Post {
   background-color: #fff;
+  margin-bottom: 75px;
+  border-bottom: 1px solid rgba(49, 48, 55, 0.1);
   &_Dark {
     background-color: #313037;
   }
@@ -61,7 +63,7 @@
       margin: 0;
       padding: 0;
       justify-content: space-between;
-      margin-bottom: 15px;
+      margin-bottom: 45px;
       &_rightSide {
         display: flex;
       }

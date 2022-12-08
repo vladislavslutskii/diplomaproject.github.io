@@ -1,7 +1,7 @@
-import React, { FC, ChangeEvent } from "react";
+import { FC, ChangeEvent } from "react";
 import styles from "./Input.module.scss";
-import classNames from "classnames";
 
+import classNames from "classnames";
 import { InputProps } from "./types";
 
 const Input: FC<InputProps> = ({

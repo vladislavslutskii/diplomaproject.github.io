@@ -10,6 +10,7 @@ import {
 } from "../../Utils";
 
 type PostStateType = {
+  selectedPost: CardPostType | null;
   cardsList: CardListType | [];
   isPostsLoading: boolean;
   singlePost: CardPostType | null;
@@ -20,6 +21,7 @@ type PostStateType = {
   searchedPosts: CardListType;
   activeTab: TabsNames;
   activeBtn: ButtonSort;
+  postModalImgVisible: boolean;
 };
 
 const INITIAL_STATE: PostStateType = {
@@ -33,6 +35,8 @@ const INITIAL_STATE: PostStateType = {
   searchedPosts: [],
   activeTab: TabsNames.Articles,
   activeBtn: ButtonSort.Day,
+  postModalImgVisible: false,
+  selectedPost: null,
 };
 
 const postsReducer = createSlice({
@@ -40,7 +44,7 @@ const postsReducer = createSlice({
   initialState: INITIAL_STATE,
   reducers: {
     getPosts: (state, action: PayloadAction<GetPostsPayload>) => {},
-    getPostsCount: (state, action: PayloadAction<undefined>) => {},
+    getPostsCount: (state, action: PayloadAction<number>) => {},
     setCardsCount: (state, action: PayloadAction<number>) => {
       state.cardsCount = action.payload;
     },
@@ -55,7 +59,7 @@ const postsReducer = createSlice({
       state.isPostsLoading = action.payload;
     },
     getBlogPosts: (state, action: PayloadAction<GetPostsPayload>) => {},
-    getBlogPostsCount: (state, action: PayloadAction<undefined>) => {},
+    getBlogPostsCount: (state, action: PayloadAction<number>) => {},
     getSinglePost: (state, action: PayloadAction<string>) => {},
     setSinglePost: (state, action: PayloadAction<CardPostType>) => {
       state.singlePost = action.payload;
@@ -65,9 +69,7 @@ const postsReducer = createSlice({
     },
     getSingleBlogPost: (state, action: PayloadAction<string>) => {},
 
-    searchForPosts: (state, action: PayloadAction<SearchPostsPayload>) => {
-      // !! state.searchString = action.payload; для по буквенного поиска
-    },
+    searchForPosts: (state, action: PayloadAction<SearchPostsPayload>) => {},
     setSearchPostsLoading: (state, action: PayloadAction<boolean>) => {
       state.isSearchPostsLoading = action.payload;
     },
@@ -88,14 +90,21 @@ const postsReducer = createSlice({
     setActiveTab: (state, action: PayloadAction<TabsNames>) => {
       state.activeTab = action.payload;
     },
-    searchForBlogPosts: (state, action: PayloadAction<SearchPostsPayload>) => {
-      // !! state.searchString = action.payload; для по буквенного поиска
-    },
+    searchForBlogPosts: (
+      state,
+      action: PayloadAction<SearchPostsPayload>
+    ) => {},
     getPostsBtn: (state, action: PayloadAction<GetPostsPayload>) => {},
     setActiveBtn: (state, action: PayloadAction<ButtonSort>) => {
       state.activeBtn = action.payload;
     },
     getPostsBlogBtn: (state, action: PayloadAction<GetPostsPayload>) => {},
+    setSelectedPost: (state, action: PayloadAction<CardPostType | null>) => {
+      state.selectedPost = action.payload;
+    },
+    setPostModalImgVisible: (state, action: PayloadAction<boolean>) => {
+      state.postModalImgVisible = action.payload;
+    },
   },
 });
 
@@ -121,4 +130,6 @@ export const {
   searchForBlogPosts,
   getPostsBtn,
   getPostsBlogBtn,
+  setSelectedPost,
+  setPostModalImgVisible,
 } = postsReducer.actions;

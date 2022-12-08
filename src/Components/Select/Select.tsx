@@ -1,9 +1,8 @@
-import React, { Children, FC } from "react";
-import classNames from "classnames";
-
+import React, { FC } from "react";
 import styles from "./Select.module.scss";
+
+import classNames from "classnames";
 import { SelectProps } from "./types";
-import Label from "../Label";
 import { Theme, useThemeContext } from "../../Context/ThemeContext/Context";
 
 const Select: FC<SelectProps> = ({
@@ -17,7 +16,7 @@ const Select: FC<SelectProps> = ({
   return (
     <div
       className={classNames(styles.selectWrap, {
-        [styles.selectWrap__Dark]: isDarkTheme,
+        [styles.selectWrap_Dark]: isDarkTheme,
       })}
     >
       <select
@@ -25,7 +24,7 @@ const Select: FC<SelectProps> = ({
         onChange={onChange}
         disabled={disabled}
         className={classNames(styles.select, {
-          [styles.select__Dark]: isDarkTheme,
+          [styles.select_Dark]: isDarkTheme,
         })}
       >
         {options.map(({ key, title, value }) => {

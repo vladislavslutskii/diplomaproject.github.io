@@ -1,13 +1,16 @@
 import React from "react";
-// @ts-ignore
 import styles from "./EmptyState.module.scss";
-import { useThemeContext, Theme } from "../../Context/ThemeContext/Context";
+
 import classnames from "classnames";
+import PostsSelectors from "../../Redux/selectors/postsSelectors";
+import { useThemeContext, Theme } from "../../Context/ThemeContext/Context";
 import { Link } from "react-router-dom";
 import { PathNames } from "../../Pages/Router";
+import { useSelector } from "react-redux";
 
 const EmptyState = () => {
-  const { theme, onChangeTheme } = useThemeContext();
+  const { theme } = useThemeContext();
+  const cardsList = useSelector(PostsSelectors.getCardsList);
 
   return (
     <div
@@ -36,8 +39,7 @@ const EmptyState = () => {
         <div className={styles.tryToAdjusting}>
           Try to adjusting your search
         </div>
-
-        {
+        {cardsList.length === 0 ? null : (
           <Link
             to={PathNames.Home}
             className={classnames(styles.goHome, {
@@ -46,7 +48,7 @@ const EmptyState = () => {
           >
             <div>Go Home</div>
           </Link>
-        }
+        )}
       </div>
     </div>
   );

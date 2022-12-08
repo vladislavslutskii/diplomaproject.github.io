@@ -1,7 +1,7 @@
-import React, { FC } from "react";
-import classNames from "classnames";
-
+import { FC } from "react";
 import styles from "./ButtonGroup.module.scss";
+
+import classNames from "classnames";
 import Button from "../Button";
 import { ButtonGroupProps } from "./types";
 import { Theme, useThemeContext } from "../../Context/ThemeContext/Context";

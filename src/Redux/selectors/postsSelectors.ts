@@ -15,4 +15,7 @@ export default {
   getBlogCardsCount: (state: any) => state.postsReducer.cardsCount,
   getSearchedBlogPosts: (state: any) => state.postsReducer.searchedPosts,
   getActiveBtn: (state: any) => state.postsReducer.activeBtn,
+  setUser: (state: any) => state.authReducer.user,
+  getIsModalImgVisible: (state: any) => state.postsReducer.postModalImgVisible,
+  getSelectedPost: (state: any) => state.postsReducer.selectedPost,
 };

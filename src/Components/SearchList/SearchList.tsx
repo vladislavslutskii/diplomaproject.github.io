@@ -2,15 +2,10 @@ import React, { FC } from "react";
 
 import styles from "./SearchList.module.scss";
 import classNames from "classnames";
-
-import { Theme, useThemeContext } from "../../Context/ThemeContext/Context";
 import Card from "../Card";
-import { CardListType } from "../../Utils";
 import EmptyState from "../EmptyState";
-
-type SearchListProps = {
-  searchedPosts: CardListType;
-};
+import { Theme, useThemeContext } from "../../Context/ThemeContext/Context";
+import { SearchListProps } from "./type";
 
 const SearchList: FC<SearchListProps> = ({ searchedPosts }) => {
   const { theme } = useThemeContext();

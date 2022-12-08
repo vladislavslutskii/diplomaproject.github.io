@@ -1,11 +1,10 @@
-import React, { FC } from "react";
-
+import { FC } from "react";
 import styles from "./CardsList.module.scss";
-import classNames from "classnames";
 
+import classNames from "classnames";
+import Card from "../Card";
 import { CardListProps } from "./types";
 import { Theme, useThemeContext } from "../../Context/ThemeContext/Context";
-import Card from "../Card";
 
 const CardsList: FC<CardListProps> = ({ cardList }) => {
   const { theme } = useThemeContext();

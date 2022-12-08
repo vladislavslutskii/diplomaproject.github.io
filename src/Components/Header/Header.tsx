@@ -1,28 +1,33 @@
-import React, { useState } from "react";
-import { HeaderSearch, HeadLogo, IconCancel } from "../../Assets/Icons";
+import { FC, useState } from "react";
+import styles from "./Header.module.scss";
+
+import classNames from "classnames";
 import Input from "../Input";
 import User from "../User";
-import classNames from "classnames";
-import styles from "./Header.module.scss";
-import { Theme, useThemeContext } from "../../Context/ThemeContext/Context";
-import { PathNames } from "../../Pages/Router";
-import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import PostsSelectors from "../../Redux/selectors/postsSelectors";
 import {
   searchForBlogPosts,
   searchForPosts,
 } from "../../Redux/reducers/postsreducer";
-import PostsSelectors from "../../Redux/selectors/postsSelectors";
+import { HeaderSearch, HeadLogo, IconCancel } from "../../Assets/Icons";
+import { Theme, useThemeContext } from "../../Context/ThemeContext/Context";
+import { PathNames } from "../../Pages/Router";
+import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import { TabsNames } from "../../Utils";
+import { HeaderProps } from "./types";
 
-const Header = ({ onClick, openInput }: any) => {
+const Header: FC<HeaderProps> = ({ onClick, openInput }) => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const { theme } = useThemeContext();
   const isDarkTheme = theme === Theme.Dark;
+  const activeTab = useSelector(PostsSelectors.getActiveTab);
   const [value, setValue] = useState<string>("");
+
   const onChange = (inputValue: string) => {
     setValue(inputValue);
   };
-  const navigate = useNavigate();
 
   const cliclToLogo = () => {
     navigate(PathNames.Home);
@@ -30,9 +35,6 @@ const Header = ({ onClick, openInput }: any) => {
   const onSignInClick = () => {
     navigate(PathNames.SignIn);
   };
-
-  const dispatch = useDispatch();
-  const activeTab = useSelector(PostsSelectors.getActiveTab);
 
   const onSearch = () => {
     if (value.length > 0) {

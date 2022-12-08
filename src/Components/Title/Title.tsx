@@ -1,11 +1,11 @@
-import React from "react";
-// @ts-ignore
+import React, { FC } from "react";
 import styles from "./Title.module.scss";
 
 import classnames from "classnames";
 import { useThemeContext, Theme } from "../../Context/ThemeContext/Context";
+import { TitleTypeProps } from "./types";
 
-const Title = ({ title }: any) => {
+const Title: FC<TitleTypeProps> = ({ title }) => {
   const { theme, onChangeTheme } = useThemeContext();
 
   return (

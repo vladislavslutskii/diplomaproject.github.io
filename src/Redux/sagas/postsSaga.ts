@@ -25,9 +25,7 @@ import { GetPostsPayload, SearchPostsPayload } from "../../Utils";
 
 function* getPostsWorker(action: PayloadAction<GetPostsPayload>) {
   yield put(setPostsLoading(true));
-
   const { _start, _sort, publishedAt_gt } = action.payload;
-
   const { data, status, problem } = yield call(
     Api.getPostsList,
     _start,
@@ -37,10 +35,9 @@ function* getPostsWorker(action: PayloadAction<GetPostsPayload>) {
   if (status === 200 && data) {
     yield put(setCardsList(data));
   } else {
-    console.log(problem);
+    console.log("Sorry, but the posts were not received", problem);
   }
   yield getPostsCountWorker();
-
   yield put(setPostsLoading(false));
 }
 function* getPostsCountWorker() {
@@ -48,7 +45,7 @@ function* getPostsCountWorker() {
   if (status === 200 && data) {
     yield put(setCardsCount(data));
   } else {
-    console.log(problem);
+    console.log("Sorry, but the list of posts was not received", problem);
   }
 }
 
@@ -64,7 +61,7 @@ function* getBlogPostsWorker(action: PayloadAction<GetPostsPayload>) {
   if (status === 200 && data) {
     yield put(setCardsList(data));
   } else {
-    console.log(problem);
+    console.log("Sorry, but the list of posts was not received", problem);
   }
   yield getBlogPostsCountWorker();
   yield put(setPostsLoading(false));
@@ -74,7 +71,7 @@ function* getBlogPostsCountWorker() {
   if (status === 200 && data) {
     yield put(setCardsCount(data));
   } else {
-    console.log(problem);
+    console.log("The number of posts was not received", problem);
   }
 }
 
@@ -85,7 +82,7 @@ function* getSinglePostWorker(action: PayloadAction<string>) {
     console.log(data);
     yield put(setSinglePost(data));
   } else {
-    console.log(problem);
+    console.log("Sorry, but the card was not received", problem);
   }
   yield put(setSinglePostLoading(false));
 }
@@ -97,7 +94,7 @@ function* getSingleBlogPostWorker(action: PayloadAction<string>) {
     console.log(data);
     yield put(setSinglePost(data));
   } else {
-    console.log(problem);
+    console.log("Sorry, but the card was not received", problem);
   }
   yield put(setSinglePostLoading(false));
 }
@@ -112,7 +109,6 @@ function* getSearchedPostsWorker(action: PayloadAction<SearchPostsPayload>) {
     _start
   );
   if (status === 200 && data) {
-    // yield put(setSearchedPostsCount(data.count));
     yield put(setSearchedPosts({ data: data, isOverwrite }));
   } else {
     console.log("Error getting search posts", problem);
@@ -132,7 +128,6 @@ function* getSearchedBlogPostsWorker(
     _start
   );
   if (status === 200 && data) {
-    // yield put(setSearchedPostsCount(data.count));
     yield put(setSearchedPosts({ data: data, isOverwrite }));
   } else {
     console.log("Error getting search posts", problem);
@@ -155,7 +150,7 @@ function* getPostByBtnWorker(action: PayloadAction<GetPostsPayload>) {
   if (status === 200 && data) {
     yield put(setCardsList(data));
   } else {
-    console.log(problem);
+    console.log("Sorry, but the list of posts was not received", problem);
   }
   yield put(setPostsLoading(false));
 }
@@ -175,7 +170,7 @@ function* getPostBlogByBtnWorker(action: PayloadAction<GetPostsPayload>) {
   if (status === 200 && data) {
     yield put(setCardsList(data));
   } else {
-    console.log(problem);
+    console.log("Sorry, but the list of posts was not received", problem);
   }
   yield put(setPostsLoading(false));
 }

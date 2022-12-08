@@ -44,31 +44,7 @@
     border-radius: 2px;
   }
 }
-// .error {
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-//   width: 132px;
-//   height: 56px;
-//   margin: 50px 10px;
-//   border-radius: 2px;
-//   font-size: 1rem;
-//   font-weight: bold;
-//   cursor: pointer;
-//   border: none;
-//   color: red;
-//   background: none;
-//   &:hover {
-//     border: 1px solid #aeaeae;
-//     background: none;
-//   }
-//   &:disabled {
-//     color: #8d8e97;
-//     background-color: #fff;
-//     background: #e8e8e8;
-//     border: none;
-//   }
-// }
+
 .ButtonIcon {
   width: 88px;
   height: 56px;
@@ -84,8 +60,14 @@
     color: rgba(49, 48, 55, 0.5) !important;
   }
 }
-.button_Dark {
-  &:disabled {
-    background: rgba(255, 255, 255, 0.1);
+.button_Dark.secondary {
+  background: rgba(255, 255, 255, 0.1) !important;
+  &:hover {
+    background: linear-gradient(
+      133.87deg,
+      rgba(77, 10, 199, 0.6) -10.18%,
+      rgba(145, 46, 242, 0.6) 108.59%
+    ) !important;
+    color: #fff !important;
   }
 }

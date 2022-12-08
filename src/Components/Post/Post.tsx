@@ -1,10 +1,9 @@
 import React, { FC } from "react";
 import styles from "./Post.module.scss";
+
 import classNames from "classnames";
 import { Theme, useThemeContext } from "../../Context/ThemeContext/Context";
 import { PostProps } from "./type";
-import Button from "../Button";
-import { ButtonType } from "../Button/types";
 import { Facebook, Other, Tvitter } from "../../Assets/Icons";
 import { Link } from "react-router-dom";
 import { PathNames } from "../../Pages/Router";

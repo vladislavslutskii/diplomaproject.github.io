@@ -1,14 +1,8 @@
-// .select {
-//   width: 256px;
-//   height: 56px;
-//   background: #ffffff;
-//   border-radius: 4px;
-// }
 .selectWrap {
   position: relative;
   display: inline-block;
   width: 256px;
-  &__Dark {
+  &_Dark {
     background-color: #313037;
   }
 }
@@ -40,9 +34,8 @@
   -moz-appearance: none;
   appearance: none;
   &_Dark {
-    background-color: #313037;
+    background: rgba(255, 255, 255, 0.1) !important;
     color: #fff;
-    border: 1px solid #ffff;
   }
 }
 .select:focus,
@@ -52,19 +45,15 @@
 .option:active {
   border-color: rgba(49, 48, 55, 0.1);
 }
-option {
+.option {
   background: #ffffff;
   padding: 18px 20px;
   position: absolute;
-  &__Dark {
+  &:active {
+    border: none;
+  }
+  &_Dark {
     background-color: #313037;
     color: #fff;
-    border: 1px solid #ffff;
   }
-}
-option span {
-  color: rgba(49, 48, 55, 0.5);
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 24px;
 }

@@ -1,16 +1,16 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import styles from "./Footer.module.scss";
-import classnames from "classnames";
 
-import { useThemeContext, Theme } from "../../Context/ThemeContext/Context";
+import classnames from "classnames";
 import Label from "../Label";
 import Switch from "../Switch";
+import { useThemeContext, Theme } from "../../Context/ThemeContext/Context";
 
 const Footer = () => {
   const { theme, onChangeTheme } = useThemeContext();
+  const [checked, setChecked] = useState(false);
   const isDarkTheme = theme === Theme.Dark;
 
-  const [checked, setChecked] = useState(false);
   const handleChange = (nextChecked: boolean) => {
     setChecked(nextChecked);
     onChangeTheme();

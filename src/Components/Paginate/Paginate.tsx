@@ -1,13 +1,19 @@
-import React, { useEffect, useState } from "react";
-import ReactPaginate from "react-paginate";
-import { ArrowLeft, ArrowRight } from "../../Assets/Icons";
-import { useThemeContext, Theme } from "../../Context/ThemeContext/Context";
-import classnames from "classnames";
-import { useSelector } from "react-redux";
-import PostsSelectors from "../../Redux/selectors/postsSelectors";
+import React, { FC } from "react";
 import styles from "./Paginate.module.scss";
 
-const Paginate = ({ pagesCount, onPageChange, page }: any) => {
+import classnames from "classnames";
+import ReactPaginate from "react-paginate";
+import PostsSelectors from "../../Redux/selectors/postsSelectors";
+import { ArrowLeft, ArrowRight } from "../../Assets/Icons";
+import { useThemeContext, Theme } from "../../Context/ThemeContext/Context";
+import { useSelector } from "react-redux";
+import { PaginateTypeProps } from "./types";
+
+const Paginate: FC<PaginateTypeProps> = ({
+  pagesCount,
+  onPageChange,
+  page,
+}) => {
   const { theme } = useThemeContext();
   const isDarkTheme = theme === Theme.Dark;
   const isPostsLoading = useSelector(PostsSelectors.getPostsLoading);
