@@ -5,20 +5,22 @@ import classNames from "classnames";
 import { Theme, useThemeContext } from "../../Context/ThemeContext/Context";
 import { PostProps } from "./type";
 import { Facebook, Other, Tvitter } from "../../Assets/Icons";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { PathNames } from "../../Pages/Router";
+import PostModalImg from "../../Pages/Blog/Components/PostModalImg";
 
 const Post: FC<PostProps> = ({ post }) => {
   const { theme } = useThemeContext();
   const isDarkTheme = theme === Theme.Dark;
-  const { imageUrl, summary, title, id } = post;
-
+  const { imageUrl, text, title, id } = post;
+  console.log(post);
   return (
     <div
       className={classNames(styles.Post, {
         [styles.Post_Dark]: isDarkTheme,
       })}
     >
+      <PostModalImg></PostModalImg>
       <div
         className={classNames(styles.Post_container, {
           [styles.Post_container_Dark]: isDarkTheme,
@@ -61,7 +63,7 @@ const Post: FC<PostProps> = ({ post }) => {
               [styles.Post_container_textWrap_text_Dark]: isDarkTheme,
             })}
           >
-            {summary}
+            {text}
           </div>
         </div>
         <div className={styles.Post_container_buttonsWrap}>

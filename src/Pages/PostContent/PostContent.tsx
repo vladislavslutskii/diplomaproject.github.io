@@ -31,7 +31,6 @@ const PostContent = () => {
       );
     }
   }, [id]);
-  console.log(post);
 
   return !isLoading && post ? (
     <>

@@ -10,8 +10,8 @@ export enum PathNames {
   Home = `/`,
   SignIn = `/sign-in`,
   SignUp = `/sign-up`,
-  Post = `/posts/:id`,
-  PostContent = `/content/:id`,
+  // Post = `/posts/:id`,
+  PostContent = `/posts/:id`,
   Search = "/search",
 }
 

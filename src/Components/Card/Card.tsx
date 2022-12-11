@@ -28,7 +28,7 @@ const Card: FC<CardPostProps> = ({ post }) => {
     });
   }
   const onNavigateToPost = () => {
-    navigate(`/content/${id}`);
+    navigate(`/posts/${id}`);
   };
 
   const onOpenModalImg = () => {
