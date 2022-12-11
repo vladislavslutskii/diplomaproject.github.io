@@ -62,12 +62,12 @@
 }
 .button_Dark.secondary {
   background: rgba(255, 255, 255, 0.1) !important;
+  color: #fff;
   &:hover {
     background: linear-gradient(
       133.87deg,
       rgba(77, 10, 199, 0.6) -10.18%,
       rgba(145, 46, 242, 0.6) 108.59%
     ) !important;
-    color: #fff !important;
   }
 }
