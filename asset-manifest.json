@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/diplomaproject.github.io/static/css/main.8ae28db2.css",
-    "main.js": "/diplomaproject.github.io/static/js/main.95e6641e.js",
-    "index.html": "/diplomaproject.github.io/index.html",
-    "main.8ae28db2.css.map": "/diplomaproject.github.io/static/css/main.8ae28db2.css.map",
-    "main.95e6641e.js.map": "/diplomaproject.github.io/static/js/main.95e6641e.js.map"
+    "main.css": "/diplomaproject/static/css/main.8ae28db2.css",
+    "main.js": "/diplomaproject/static/js/main.95e6641e.js",
+    "index.html": "/diplomaproject/index.html",
+    "main.8ae28db2.css.map": "/diplomaproject/static/css/main.8ae28db2.css.map",
+    "main.95e6641e.js.map": "/diplomaproject/static/js/main.95e6641e.js.map"
   },
   "entrypoints": [
     "static/css/main.8ae28db2.css",
