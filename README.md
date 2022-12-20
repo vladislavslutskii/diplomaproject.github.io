@@ -1,5 +1,5 @@
 
   
   <div id="header" align="center">
-  Visit app : <a target="_blank" href="https://vladislavslutskii.github.io/diplomaproject/"> 
+  Visit app : <a target="_blank" href="https://vladislavslutskii.github.io/diplomaproject/">Tap</a>
 </div>
