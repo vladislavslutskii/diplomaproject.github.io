@@ -62,3 +62,9 @@
 .availableToClickButton {
   color: green;
 }
+
+@media (max-width: 1300px) {
+  .pageNumber {
+    font-size: 16px !important;
+  }
+}

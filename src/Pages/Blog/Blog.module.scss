@@ -109,3 +109,15 @@
 .Blog_container_tabWrap_Dark {
   border-bottom: 1px solid #dadada;
 }
+
+@media (max-width: 1300px) {
+  .Blog_container {
+    width: 90%;
+  }
+  html {
+    font-size: 15px;
+  }
+  .filterMenu_selectWrap {
+    padding: 0 0 0 15px;
+  }
+}

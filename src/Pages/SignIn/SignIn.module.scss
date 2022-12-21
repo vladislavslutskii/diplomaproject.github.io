@@ -137,3 +137,86 @@
 .error__Dark {
   color: #fff;
 }
+@media (max-width: 1300px) {
+  .signIn {
+    width: 80%;
+    &__container {
+      width: 100%;
+    }
+  }
+  .formContainer {
+    width: 580px;
+  }
+  .buttonAndText__signUpButton {
+    width: 100% !important;
+  }
+}
+@media (max-width: 1100px) {
+  .formContainer {
+    width: 500px;
+  }
+  .label {
+    font-size: 15px;
+  }
+  .formContainer__inputContainer__forgotPass {
+    font-size: 15px;
+  }
+  .formContainer {
+    gap: 35px;
+  }
+  .buttonAndText__formFooterText {
+    font-size: 15px;
+  }
+}
+@media (max-width: 768px) {
+  .formContainer {
+    width: 450px;
+  }
+  .label {
+    font-size: 14px;
+  }
+  .formContainer__inputContainer__forgotPass {
+    font-size: 14px;
+  }
+  .formContainer {
+    gap: 25px;
+  }
+  .buttonAndText__formFooterText {
+    font-size: 14px;
+  }
+}
+@media (max-width: 576px) {
+  .formContainer {
+    width: 380px;
+  }
+  .label {
+    font-size: 14px;
+  }
+  .formContainer__inputContainer__forgotPass {
+    font-size: 14px;
+  }
+  .formContainer {
+    gap: 22px;
+  }
+  .buttonAndText__formFooterText {
+    font-size: 14px;
+  }
+}
+@media (max-width: 375px) {
+  .formContainer {
+    width: 330px;
+    height: 400px;
+  }
+  .label {
+    font-size: 12px;
+  }
+  .formContainer__inputContainer__forgotPass {
+    font-size: 12px;
+  }
+  .formContainer {
+    gap: 10px;
+  }
+  .buttonAndText__formFooterText {
+    font-size: 12px;
+  }
+}

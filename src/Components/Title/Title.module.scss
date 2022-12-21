@@ -8,3 +8,35 @@
 .title_WrapDark {
   color: #fff;
 }
+@media (max-width: 1100px) {
+  .title_Wrap {
+    font-size: 27px;
+  }
+  h1 {
+    margin-top: 18px;
+  }
+}
+@media (max-width: 992px) {
+  .title_Wrap {
+    font-size: 26px;
+  }
+  h1 {
+    margin-top: 18px;
+  }
+}
+@media (max-width: 769px) {
+  .title_Wrap {
+    font-size: 25px;
+  }
+  h1 {
+    margin-top: 16px;
+  }
+}
+@media (max-width: 375px) {
+  .title_Wrap {
+    font-size: 22px;
+  }
+  h1 {
+    margin-top: 13px;
+  }
+}

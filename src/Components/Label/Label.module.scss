@@ -11,3 +11,18 @@
     color: #fff;
   }
 }
+@media (max-width: 768px) {
+  .label {
+    font-size: 14px;
+  }
+}
+@media (max-width: 576px) {
+  .label {
+    font-size: 14px;
+  }
+}
+@media (max-width: 375px) {
+  .label {
+    font-size: 13px;
+  }
+}

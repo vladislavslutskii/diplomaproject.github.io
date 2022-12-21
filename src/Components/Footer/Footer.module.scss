@@ -35,3 +35,51 @@
     color: #fff;
   }
 }
+@media (max-width: 1300px) {
+  .footerWrap {
+    width: 90%;
+  }
+  .footerWrap_Watermark {
+    font-size: 15px;
+  }
+  .switchLabel {
+    font-style: 15px;
+    font-weight: bold;
+    color: black;
+  }
+  .switch {
+    font-style: 15px;
+  }
+}
+@media (max-width: 1200px) {
+  .footerWrap {
+    width: 90%;
+  }
+  .footerWrap_Watermark {
+    font-size: 15px;
+  }
+  .switchLabel {
+    font-style: 15px;
+    font-weight: bold;
+    color: black;
+  }
+  .switch {
+    font-style: 15px;
+  }
+}
+@media (max-width: 769px) {
+  .footerWrap {
+    width: 90%;
+  }
+  .footerWrap_Watermark {
+    font-size: 14px;
+  }
+  .switchLabel {
+    font-style: 14px;
+    font-weight: bold;
+    color: black;
+  }
+  .switch {
+    font-style: 14px;
+  }
+}
