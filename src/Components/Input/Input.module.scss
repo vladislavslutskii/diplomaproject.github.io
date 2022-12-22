@@ -31,6 +31,40 @@
 }
 @media (max-width: 1200px) {
   ::-webkit-input-placeholder {
+    font-size: 15px !important;
+  }
+  ::-moz-placeholder {
+    font-size: 15px !important;
+  }
+  :-ms-input-placeholder {
+    font-size: 15px !important;
+  }
+  ::-ms-input-placeholder {
+    font-size: 15px !important;
+  }
+  ::placeholder {
+    font-size: 15px !important;
+  }
+}
+@media (max-width: 1024px) {
+  ::-webkit-input-placeholder {
+    font-size: 15px !important;
+  }
+  ::-moz-placeholder {
+    font-size: 15px !important;
+  }
+  :-ms-input-placeholder {
+    font-size: 15px !important;
+  }
+  ::-ms-input-placeholder {
+    font-size: 15px !important;
+  }
+  ::placeholder {
+    font-size: 15px !important;
+  }
+}
+@media (max-width: 768px) {
+  ::-webkit-input-placeholder {
     font-size: 14px !important;
   }
   ::-moz-placeholder {
@@ -44,6 +78,23 @@
   }
   ::placeholder {
     font-size: 14px !important;
+  }
+}
+@media (max-width: 425px) {
+  ::-webkit-input-placeholder {
+    font-size: 13px !important;
+  }
+  ::-moz-placeholder {
+    font-size: 13px !important;
+  }
+  :-ms-input-placeholder {
+    font-size: 13px !important;
+  }
+  ::-ms-input-placeholder {
+    font-size: 13px !important;
+  }
+  ::placeholder {
+    font-size: 13px !important;
   }
 }
 @media (max-width: 375px) {
@@ -61,5 +112,22 @@
   }
   ::placeholder {
     font-size: 12px !important;
+  }
+}
+@media (max-width: 320px) {
+  ::-webkit-input-placeholder {
+    font-size: 11px !important;
+  }
+  ::-moz-placeholder {
+    font-size: 11px !important;
+  }
+  :-ms-input-placeholder {
+    font-size: 11px !important;
+  }
+  ::-ms-input-placeholder {
+    font-size: 11px !important;
+  }
+  ::placeholder {
+    font-size: 11px !important;
   }
 }

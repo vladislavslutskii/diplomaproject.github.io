@@ -21,10 +21,10 @@ const PagesWrapper = () => {
         [styles.app_Dark]: isDarkTheme,
       })}
     >
-      <Header
+      {/* <Header
         onClick={() => setOpenInput(!openInput)}
         openInput={openInput}
-      ></Header>
+      ></Header> */}
       {location.pathname === PathNames.Home ? <Blog></Blog> : <Outlet></Outlet>}
       <Footer></Footer>
     </div>

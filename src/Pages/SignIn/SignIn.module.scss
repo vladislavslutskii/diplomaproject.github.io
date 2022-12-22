@@ -67,17 +67,17 @@
       width: 100%;
       border-radius: 4px;
       &__Dark {
-        background: rgba(255, 255, 255, 0.1);
-        color: rgba(255, 255, 255, 0.5);
-        border-radius: 4px;
+        background: rgba(255, 255, 255, 0.1) !important;
+        color: rgba(255, 255, 255, 0.5) !important;
+        border-radius: 4px !important;
       }
     }
     &__passwordInput {
       width: 100%;
       border-radius: 4px;
       &__Dark {
-        background: rgba(255, 255, 255, 0.1);
-        color: rgba(255, 255, 255, 0.5);
+        background: rgba(255, 255, 255, 0.1) !important;
+        color: rgba(255, 255, 255, 0.5) !important;
         border-radius: 4px;
       }
     }
@@ -139,84 +139,180 @@
 }
 @media (max-width: 1300px) {
   .signIn {
-    width: 80%;
+    width: 100%;
     &__container {
-      width: 100%;
+      width: 90%;
     }
-  }
-  .formContainer {
-    width: 580px;
   }
   .buttonAndText__signUpButton {
     width: 100% !important;
   }
 }
-@media (max-width: 1100px) {
-  .formContainer {
-    width: 500px;
-  }
-  .label {
-    font-size: 15px;
-  }
-  .formContainer__inputContainer__forgotPass {
-    font-size: 15px;
-  }
-  .formContainer {
-    gap: 35px;
-  }
-  .buttonAndText__formFooterText {
-    font-size: 15px;
-  }
-}
 @media (max-width: 768px) {
-  .formContainer {
-    width: 450px;
-  }
   .label {
-    font-size: 14px;
-  }
-  .formContainer__inputContainer__forgotPass {
-    font-size: 14px;
+    font-size: 16px;
   }
   .formContainer {
-    gap: 25px;
+    margin-top: 60px;
+    width: 90%;
+    height: 430px;
+    padding: 30px;
+    gap: 30px;
+    &__inputContainer {
+      &__forgotPass {
+        margin-top: 15px;
+        font-size: 15px;
+      }
+      &__emailInput {
+        height: 55px;
+      }
+      &__passwordInput {
+        height: 55px;
+      }
+    }
   }
-  .buttonAndText__formFooterText {
-    font-size: 14px;
+  .buttonAndText {
+    &__signUpButton {
+      margin-bottom: 10px;
+      height: 50px !important;
+    }
+    &__formFooterText {
+      font-size: 15px;
+    }
   }
 }
-@media (max-width: 576px) {
-  .formContainer {
-    width: 380px;
-  }
+@media (max-width: 540px) {
   .label {
     font-size: 14px;
   }
-  .formContainer__inputContainer__forgotPass {
+  .formContainer {
+    margin-top: 45px;
+    width: 95%;
+    height: 400px;
+    padding: 30px;
+    gap: 30px;
+    &__inputContainer {
+      &__forgotPass {
+        margin-top: 5px;
+        font-size: 14px;
+      }
+      &__emailInput {
+        height: 50px;
+      }
+      &__passwordInput {
+        height: 50px;
+      }
+    }
+  }
+  .buttonAndText {
+    &__signUpButton {
+      margin-top: 0px;
+      margin-bottom: 5px;
+      height: 50px !important;
+    }
+    &__formFooterText {
+      font-size: 14px;
+    }
+  }
+}
+@media (max-width: 425px) {
+  .label {
     font-size: 14px;
   }
   .formContainer {
-    gap: 22px;
+    margin-top: 45px;
+    width: 95%;
+    height: 380px;
+    padding: 25px;
+    gap: 30px;
+    &__inputContainer {
+      &__forgotPass {
+        margin-top: 5px;
+        font-size: 14px;
+      }
+      &__emailInput {
+        height: 50px;
+      }
+      &__passwordInput {
+        height: 50px;
+      }
+    }
   }
-  .buttonAndText__formFooterText {
-    font-size: 14px;
+  .buttonAndText {
+    &__signUpButton {
+      margin-top: 0px;
+      margin-bottom: 5px;
+      height: 50px !important;
+    }
+    &__formFooterText {
+      font-size: 14px;
+    }
   }
 }
 @media (max-width: 375px) {
-  .formContainer {
-    width: 330px;
-    height: 400px;
-  }
   .label {
-    font-size: 12px;
-  }
-  .formContainer__inputContainer__forgotPass {
-    font-size: 12px;
+    font-size: 14px;
   }
   .formContainer {
-    gap: 10px;
+    margin-top: 35px;
+    width: 95%;
+    height: 320px;
+    padding: 25px;
+    gap: 20px;
+
+    &__inputContainer {
+      &__forgotPass {
+        margin: 0;
+        font-size: 13px;
+      }
+      &__emailInput {
+        height: 35px;
+      }
+      &__passwordInput {
+        height: 35px;
+      }
+    }
   }
-  .buttonAndText__formFooterText {
-    font-size: 12px;
+  .buttonAndText {
+    &__signUpButton {
+      margin-bottom: 10px;
+      height: 38px !important;
+    }
+    &__formFooterText {
+      font-size: 13px;
+    }
+  }
+}
+@media (max-width: 320px) {
+  .label {
+    font-size: 13px;
+  }
+  .formContainer {
+    width: 270px;
+    height: 320px;
+    padding: 25px;
+    gap: 20px;
+
+    &__inputContainer {
+      &__forgotPass {
+        margin: 0;
+        font-size: 12px;
+      }
+      &__emailInput {
+        height: 35px;
+      }
+      &__passwordInput {
+        height: 35px;
+      }
+    }
+  }
+  .buttonAndText {
+    &__signUpButton {
+      height: 38px !important;
+      margin-bottom: 10px;
+    }
+    &__formFooterText {
+      font-size: 12px;
+    }
   }
 }
