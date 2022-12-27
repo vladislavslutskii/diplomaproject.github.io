@@ -56,3 +56,77 @@
     color: white;
   }
 }
+@media (max-width: 768px) {
+  .nothingFound {
+    font-size: 26px;
+  }
+  .tryToAdjusting {
+    font-size: 26px;
+  }
+}
+@media (max-width: 425px) {
+  .emptyStateWrap {
+    width: 90%;
+    margin-bottom: 0;
+    height: 75vh;
+    margin: auto;
+    &_containerImg {
+      border-radius: 50%;
+      img {
+        width: 270px;
+        height: 270px;
+        border-radius: 50%;
+      }
+    }
+  }
+  .nothingFound {
+    font-size: 25px;
+  }
+  .tryToAdjusting {
+    font-size: 25px;
+  }
+}
+@media (max-width: 375px) {
+  .emptyStateWrap {
+    margin-bottom: 0;
+    height: 75vh;
+    width: 90%;
+    margin: auto;
+    &_containerImg {
+      border-radius: 50%;
+      img {
+        width: 250px;
+        height: 250px;
+        border-radius: 50%;
+      }
+    }
+  }
+  .nothingFound {
+    font-size: 24px;
+  }
+  .tryToAdjusting {
+    font-size: 24px;
+  }
+}
+@media (max-width: 320px) {
+  .emptyStateWrap {
+    width: 90%;
+    margin: auto;
+    margin-bottom: 0;
+    height: 75vh;
+    &_containerImg {
+      border-radius: 50%;
+      img {
+        width: 230px;
+        height: 220px;
+        border-radius: 50%;
+      }
+    }
+  }
+  .nothingFound {
+    font-size: 20px;
+  }
+  .tryToAdjusting {
+    font-size: 20px;
+  }
+}

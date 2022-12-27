@@ -23,10 +23,12 @@
   }
   &_switchWrap {
     display: flex;
+    align-items: center;
   }
 }
 .switchLabel {
   font-weight: 400;
+  font-weight: bold;
   font-size: 16px;
   line-height: 24px;
   color: rgba(49, 48, 55, 0.5);
@@ -43,12 +45,11 @@
     font-size: 15px;
   }
   .switchLabel {
-    font-style: 15px;
-    font-weight: bold;
-    color: black;
+    font-size: 15px;
+    color: rgba(49, 48, 55, 0.5);
   }
   .switch {
-    font-style: 15px;
+    font-size: 15px;
   }
 }
 @media (max-width: 1200px) {
@@ -59,29 +60,65 @@
     font-size: 15px;
   }
   .switchLabel {
-    font-style: 15px;
-    font-weight: bold;
-    color: black;
+    font-size: 15px;
+    color: rgba(49, 48, 55, 0.5);
   }
   .switch {
-    font-style: 15px;
+    font-size: 15px;
   }
 }
-@media (max-width: 769px) {
+@media (max-width: 1024px) {
   .footerWrap {
     width: 90%;
+    padding: 20px;
   }
   .footerWrap_Watermark {
-    font-size: 14px;
+    font-size: 15px;
   }
   .switchLabel {
-    font-style: 14px;
-    font-weight: bold;
-    color: black;
+    font-size: 15px !important;
+
+    align-items: center;
   }
   .switch {
-    font-style: 14px;
+    font-size: 15px;
+  }
+}
+@media (max-width: 768px) {
+  .footerWrap {
+    width: 90%;
+    padding: 15px;
+  }
+  .footerWrap_Watermark {
+    font-size: 15px;
+  }
+  .switchLabel {
+    font-size: 15px !important;
+
+    align-items: center;
+  }
+  .switch {
+    font-size: 15px;
   }
 }
 @media (max-width: 320px) {
+  .footerWrap {
+    &_Watermark {
+      display: none;
+    }
+    &_switchWrap {
+      display: flex;
+      justify-content: space-between;
+      width: 100% !important;
+    }
+  }
+  .switchLabel {
+    font-size: 14px !important;
+  }
+  .switch {
+    font-size: 14px;
+  }
+  .userWrap {
+    height: 100%;
+  }
 }

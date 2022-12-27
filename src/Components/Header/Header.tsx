@@ -56,7 +56,7 @@ const Header: FC<HeaderProps> = ({ onClick, openInput }) => {
       onClick();
     }
   };
-
+  const screenWidth = window.screen.width;
   return (
     <nav
       className={classNames(styles.header, {
@@ -72,7 +72,7 @@ const Header: FC<HeaderProps> = ({ onClick, openInput }) => {
         <HeadLogo></HeadLogo>
       </div>
 
-      {openInput && (
+      {openInput && screenWidth > 549 && (
         <div
           className={classNames(styles.header_inputWrap, {
             [styles.header_searchAUser_open]: openInput,
@@ -91,12 +91,23 @@ const Header: FC<HeaderProps> = ({ onClick, openInput }) => {
             <div
               className={classNames(styles.searchIcon, {
                 [styles.searchIcon_Dark]: isDarkTheme,
+                [styles.searchIcon_open]: value.length > 0,
               })}
               onClick={onSearch}
             >
               <HeaderSearch width={`24`} height={`24`}></HeaderSearch>
             </div>
           ) : (
+            <div
+              className={classNames(styles.cancelIcon, {
+                [styles.cancelIcon_Dark]: isDarkTheme,
+              })}
+              onClick={onClick}
+            >
+              <IconCancel width={`16`} height={`16`}></IconCancel>
+            </div>
+          )}
+          {value.length > 0 && screenWidth < 549 && (
             <div
               className={classNames(styles.cancelIcon, {
                 [styles.cancelIcon_Dark]: isDarkTheme,
@@ -129,6 +140,53 @@ const Header: FC<HeaderProps> = ({ onClick, openInput }) => {
           <User username={"Sign In"}></User>
         </div>
       </div>
+      {openInput && screenWidth < 549 && (
+        <div
+          className={classNames(styles.header_inputWrap, {
+            [styles.header_searchAUser_open]: openInput,
+            [styles.header_searchAUser_openDark]: isDarkTheme,
+          })}
+        >
+          <Input
+            className={classNames(styles.header_input, {
+              [styles.header_input_Dark]: isDarkTheme,
+            })}
+            placeholder={"Search..."}
+            onChange={onChange}
+            value={value}
+          />
+          {value.length > 0 ? (
+            <div
+              className={classNames(styles.searchIcon, {
+                [styles.searchIcon_Dark]: isDarkTheme,
+                [styles.searchIcon_open]: value.length > 0,
+              })}
+              onClick={onSearch}
+            >
+              <HeaderSearch width={`24`} height={`24`}></HeaderSearch>
+            </div>
+          ) : (
+            <div
+              className={classNames(styles.cancelIcon, {
+                [styles.cancelIcon_Dark]: isDarkTheme,
+              })}
+              onClick={onClick}
+            >
+              <IconCancel width={`16`} height={`16`}></IconCancel>
+            </div>
+          )}
+          {value.length > 0 && screenWidth < 549 && (
+            <div
+              className={classNames(styles.cancelIcon, {
+                [styles.cancelIcon_Dark]: isDarkTheme,
+              })}
+              onClick={onClick}
+            >
+              <IconCancel width={`16`} height={`16`}></IconCancel>
+            </div>
+          )}
+        </div>
+      )}
     </nav>
   );
 };
