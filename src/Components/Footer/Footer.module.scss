@@ -101,6 +101,27 @@
     font-size: 15px;
   }
 }
+@media (max-width: 375px) {
+  .footerWrap {
+    &_Watermark {
+      display: none;
+    }
+    &_switchWrap {
+      display: flex;
+      justify-content: space-between;
+      width: 100% !important;
+    }
+  }
+  .switchLabel {
+    font-size: 14px !important;
+  }
+  .switch {
+    font-size: 14px;
+  }
+  .userWrap {
+    height: 100%;
+  }
+}
 @media (max-width: 320px) {
   .footerWrap {
     &_Watermark {

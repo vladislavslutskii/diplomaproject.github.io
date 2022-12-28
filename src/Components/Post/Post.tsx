@@ -12,8 +12,8 @@ import PostModalImg from "../../Pages/Blog/Components/PostModalImg";
 const Post: FC<PostProps> = ({ post }) => {
   const { theme } = useThemeContext();
   const isDarkTheme = theme === Theme.Dark;
-  const { imageUrl, text, title, id } = post;
-  console.log(post);
+  const { imageUrl, summary, title, id } = post;
+  const ScreenWidth = window.screen.availWidth;
   return (
     <div
       className={classNames(styles.Post, {
@@ -63,7 +63,7 @@ const Post: FC<PostProps> = ({ post }) => {
               [styles.Post_container_textWrap_text_Dark]: isDarkTheme,
             })}
           >
-            {text}
+            {summary}
           </div>
         </div>
         <div className={styles.Post_container_buttonsWrap}>
