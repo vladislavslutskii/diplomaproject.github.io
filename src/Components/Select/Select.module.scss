@@ -2,6 +2,7 @@
   position: relative;
   display: inline-block;
   width: 256px;
+  border: 1px solid #6c1bdb;
   &_Dark {
     background-color: #313037;
   }
@@ -38,10 +39,7 @@
     color: #fff;
   }
 }
-.select:focus,
-.select:hover {
-  border: 1px solid #6c1bdb;
-}
+
 .option:active {
   border-color: rgba(49, 48, 55, 0.1);
 }

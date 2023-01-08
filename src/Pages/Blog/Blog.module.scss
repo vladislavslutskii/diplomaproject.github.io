@@ -138,38 +138,6 @@
         margin: auto;
         margin-top: 50px;
       }
-    }
-  }
-  .filterMenu {
-    margin-top: 50px;
-    flex-wrap: wrap;
-    &_buttonWrap {
-      margin: auto;
-      width: 70%;
-    }
-    &_selectWrap {
-      margin: auto;
-      margin-top: 20px;
-      padding: 0;
-    }
-  }
-}
-@media (max-width: 425px) {
-  .Blog {
-    width: 100%;
-    padding-top: 20px;
-    &_container {
-      width: 95%;
-      &_titleWrap {
-        width: 70%;
-        margin: auto;
-        text-align: center;
-      }
-      &_tabWrap {
-        width: 90%;
-        margin: auto;
-        margin-top: 50px;
-      }
       &_Paginate {
         width: 95%;
         margin: auto;
@@ -190,73 +158,33 @@
     }
   }
 }
-@media (max-width: 375px) {
-  .Blog {
-    width: 100%;
-    padding-top: 20px;
-    &_container {
-      width: 95%;
-      &_titleWrap {
-        width: 70%;
-        margin: auto;
-        text-align: center;
-      }
-      &_tabWrap {
-        width: 90%;
-        margin: auto;
-        margin-top: 50px;
-      }
-      &_Paginate {
-        display: none;
-      }
-    }
+@media (max-width: 425px) {
+  .Blog_container_Paginate {
+    display: none;
   }
-  .filterMenu {
-    margin-top: 50px;
-    flex-wrap: wrap;
-    &_buttonWrap {
-      margin: auto;
-      width: 60%;
-    }
-    &_selectWrap {
-      margin: auto;
-      margin-top: 20px;
-      padding: 0;
-    }
+}
+@media (max-width: 375px) {
+  .Blog_container_Paginate {
+    display: none;
+  }
+  .filterMenu_buttonWrap {
+    margin: auto;
+    width: 60%;
   }
 }
 @media (max-width: 320px) {
   .Blog {
-    width: 100%;
-    padding-top: 20px;
     &_container {
-      width: 95%;
       &_titleWrap {
         width: 50%;
-        margin: auto;
-        text-align: center;
-      }
-      &_tabWrap {
-        width: 90%;
-        margin: auto;
-        margin-top: 50px;
       }
       &_Paginate {
         display: none;
       }
     }
   }
-  .filterMenu {
-    margin-top: 50px;
-    flex-wrap: wrap;
-    &_buttonWrap {
-      margin: auto;
-      width: 55%;
-    }
-    &_selectWrap {
-      margin: auto;
-      margin-top: 20px;
-      padding: 0;
-    }
+  .filterMenu_buttonWrap {
+    margin: auto;
+    width: 55%;
   }
 }

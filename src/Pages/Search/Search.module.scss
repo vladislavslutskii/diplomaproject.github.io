@@ -21,6 +21,7 @@
       justify-content: center;
       &_Dark {
         background-color: #313037;
+        color: #fff;
       }
     }
     &_CardsListWrap {
@@ -38,6 +39,7 @@
   padding-bottom: 60px;
   padding-top: 30px;
 }
+
 @media (max-width: 1200px) {
   .Search {
     width: 100%;
@@ -45,76 +47,36 @@
       width: 100%;
       &_titleWrap {
         font-size: 48px;
-        margin-bottom: 20px !important;
-      }
-    }
-  }
-}
-@media (max-width: 1024px) {
-  .Search {
-    width: 100%;
-    &_container {
-      width: 100%;
-      &_titleWrap {
-        font-size: 48px;
-        margin-bottom: 20px !important;
+        margin-bottom: 25px !important;
       }
     }
   }
 }
 @media (max-width: 768px) {
-  .Search {
-    width: 100%;
-    &_container {
-      width: 100%;
-      &_titleWrap {
-        width: 90%;
-        font-size: 41px;
-        margin-bottom: 20px !important;
-      }
-    }
+  .Search_container_titleWrap {
+    width: 90%;
+    font-size: 41px;
+    margin-bottom: 25px !important;
   }
 }
-
 @media (max-width: 425px) {
-  .Search {
-    width: 100%;
-    &_container {
-      width: 100%;
-      &_titleWrap {
-        width: 85%;
-        font-size: 41px;
-        margin-bottom: 20px !important;
-      }
-    }
+  .Search_container_titleWrap {
+    width: 85%;
+    font-size: 41px;
+    margin-bottom: 25px !important;
   }
 }
 @media (max-width: 375px) {
-  .Search {
-    width: 100%;
-    &_container {
-      width: 100%;
-      &_titleWrap {
-        width: 85%;
-        font-size: 37px;
-        margin-bottom: 20px !important;
-      }
-    }
+  .Search_container_titleWrap {
+    width: 85%;
+    font-size: 37px;
+    margin-bottom: 25px !important;
   }
 }
 @media (max-width: 320px) {
-  .Search {
-    width: 100%;
-    &_container {
-      width: 100%;
-      &_CardsListWrap {
-        margin-bottom: 0;
-      }
-      &_titleWrap {
-        width: 85%;
-        font-size: 34px;
-        margin-bottom: 20px !important;
-      }
-    }
+  .Search_container_titleWrap {
+    width: 85%;
+    font-size: 34px;
+    margin-bottom: 25px !important;
   }
 }

@@ -46,23 +46,7 @@
     font-size: 15px !important;
   }
 }
-@media (max-width: 1024px) {
-  ::-webkit-input-placeholder {
-    font-size: 15px !important;
-  }
-  ::-moz-placeholder {
-    font-size: 15px !important;
-  }
-  :-ms-input-placeholder {
-    font-size: 15px !important;
-  }
-  ::-ms-input-placeholder {
-    font-size: 15px !important;
-  }
-  ::placeholder {
-    font-size: 15px !important;
-  }
-}
+
 @media (max-width: 768px) {
   ::-webkit-input-placeholder {
     font-size: 14px !important;

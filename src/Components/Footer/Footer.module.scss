@@ -52,32 +52,11 @@
     font-size: 15px;
   }
 }
-@media (max-width: 1200px) {
-  .footerWrap {
-    width: 90%;
-  }
-  .footerWrap_Watermark {
-    font-size: 15px;
-  }
-  .switchLabel {
-    font-size: 15px;
-    color: rgba(49, 48, 55, 0.5);
-  }
-  .switch {
-    font-size: 15px;
-  }
-}
 @media (max-width: 1024px) {
   .footerWrap {
-    width: 90%;
     padding: 20px;
   }
-  .footerWrap_Watermark {
-    font-size: 15px;
-  }
   .switchLabel {
-    font-size: 15px !important;
-
     align-items: center;
   }
   .switch {
@@ -86,43 +65,10 @@
 }
 @media (max-width: 768px) {
   .footerWrap {
-    width: 90%;
     padding: 15px;
-  }
-  .footerWrap_Watermark {
-    font-size: 15px;
-  }
-  .switchLabel {
-    font-size: 15px !important;
-
-    align-items: center;
-  }
-  .switch {
-    font-size: 15px;
   }
 }
 @media (max-width: 375px) {
-  .footerWrap {
-    &_Watermark {
-      display: none;
-    }
-    &_switchWrap {
-      display: flex;
-      justify-content: space-between;
-      width: 100% !important;
-    }
-  }
-  .switchLabel {
-    font-size: 14px !important;
-  }
-  .switch {
-    font-size: 14px;
-  }
-  .userWrap {
-    height: 100%;
-  }
-}
-@media (max-width: 320px) {
   .footerWrap {
     &_Watermark {
       display: none;

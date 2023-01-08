@@ -92,11 +92,10 @@
 @media (max-width: 426px) {
   .cardWrap {
     width: 85%;
-    // margin: 0 10px 20px 10px;
     height: 370px;
     &_imgWrap {
       height: 215px;
-
+      margin-bottom: 15px;
       &_img {
         opacity: 1;
       }
@@ -108,12 +107,10 @@
 }
 @media (max-width: 375px) {
   .cardWrap {
-    width: 85%;
     margin: 0 10px 20px 10px;
     height: 350px;
     &_imgWrap {
       height: 205px;
-      margin-bottom: 25px;
     }
     &_textWrap {
       width: 100%;
@@ -131,23 +128,9 @@
 @media (max-width: 320px) {
   .cardWrap {
     width: 90%;
-    margin: 0 10px 20px 10px;
-    height: 350px;
     &_imgWrap {
       height: 200px;
       margin-bottom: 15px;
-    }
-    &_textWrap {
-      width: 100%;
-
-      &_dateText {
-        font-size: 15px;
-        width: 90%;
-      }
-      &_titleText {
-        font-size: 15px;
-        width: 90%;
-      }
     }
   }
 }

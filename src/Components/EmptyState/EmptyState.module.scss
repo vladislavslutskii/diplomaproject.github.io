@@ -88,12 +88,7 @@
 }
 @media (max-width: 375px) {
   .emptyStateWrap {
-    margin-bottom: 0;
-    height: 75vh;
-    width: 90%;
-    margin: auto;
     &_containerImg {
-      border-radius: 50%;
       img {
         width: 250px;
         height: 250px;
@@ -110,16 +105,10 @@
 }
 @media (max-width: 320px) {
   .emptyStateWrap {
-    width: 90%;
-    margin: auto;
-    margin-bottom: 0;
-    height: 75vh;
     &_containerImg {
-      border-radius: 50%;
       img {
         width: 230px;
         height: 220px;
-        border-radius: 50%;
       }
     }
   }

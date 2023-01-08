@@ -140,7 +140,6 @@
     width: 90%;
     &_container {
       width: 95%;
-
       &_buttonAndIDWrap {
         margin-top: 30px;
       }
@@ -153,7 +152,6 @@
       }
       &_imgWrap {
         width: 90%;
-        // height: 400px;
         margin-top: 35px;
         img {
           -o-object-fit: fill;
@@ -164,7 +162,6 @@
       }
       &_buttonsWrap {
         width: 90%;
-        // justify-content: center;
         margin-bottom: 10;
         &_buttons {
           width: 70px;
@@ -181,98 +178,40 @@
 }
 @media (max-width: 1024px) {
   .Post {
-    width: 90%;
     &_container {
-      width: 95%;
-
-      &_buttonAndIDWrap {
-        margin-top: 30px;
-      }
       &_titleWrap {
-        width: 90%;
-        margin-top: 35px;
         font-size: 35px;
         line-height: 40px;
-        text-align: justify;
       }
       &_imgWrap {
-        width: 90%;
         height: 400px;
-        margin-top: 35px;
         img {
-          -o-object-fit: fill;
-          object-fit: fill;
-          margin-top: 0;
           border-radius: 7%;
         }
-      }
-      &_buttonsWrap {
-        width: 90%;
-        // justify-content: center;
-        margin-bottom: 10;
-        &_buttons {
-          width: 70px;
-          height: 55px;
-        }
-      }
-      &_textWrap {
-        width: 90%;
-        text-align: justify;
-        margin: 25px 0;
       }
     }
   }
 }
 @media (max-width: 768px) {
   .Post {
-    width: 90%;
     &_container {
-      width: 95%;
-
       &_buttonAndIDWrap {
         margin-top: 25px;
       }
       &_titleWrap {
-        width: 90%;
         margin-top: 30px;
         font-size: 33px;
         line-height: 38px;
-        text-align: justify;
       }
       &_imgWrap {
-        width: 90%;
-        height: 400px;
         margin-top: 30px;
-        img {
-          -o-object-fit: fill;
-          object-fit: fill;
-          margin-top: 0;
-          border-radius: 7%;
-        }
-      }
-      &_buttonsWrap {
-        width: 90%;
-        // justify-content: center;
-        margin-bottom: 10;
-        &_buttons {
-          width: 70px;
-          height: 55px;
-        }
-      }
-      &_textWrap {
-        width: 90%;
-        text-align: justify;
-        margin: 25px 0;
       }
     }
   }
 }
 @media (max-width: 425px) {
   .Post {
-    width: 90%;
     &_container {
-      width: 95%;
-
       &_buttonAndIDWrap {
         margin-top: 15px;
       }
@@ -281,23 +220,13 @@
         margin-top: 25px;
         font-size: 27px;
         line-height: 35px;
-        text-align: justify;
       }
       &_imgWrap {
         width: 100%;
         height: 250px;
         margin-top: 20px;
-        img {
-          -o-object-fit: fill;
-          object-fit: fill;
-          margin-top: 0;
-          border-radius: 10%;
-        }
       }
       &_buttonsWrap {
-        width: 90%;
-        justify-content: center;
-        margin-bottom: 10;
         &_buttons {
           width: 50px;
           height: 50px;
@@ -305,63 +234,26 @@
       }
       &_textWrap {
         width: 100%;
-        text-align: justify;
-        margin: 25px 0;
       }
     }
   }
 }
 @media (max-width: 375px) {
   .Post {
-    width: 90%;
     &_container {
-      width: 95%;
-
       &_buttonAndIDWrap {
         width: 95%;
         margin-top: 15px;
       }
-      &_titleWrap {
-        width: 100%;
-        margin-top: 25px;
-        font-size: 27px;
-        line-height: 33px;
-        text-align: justify;
-      }
-      &_imgWrap {
-        width: 100%;
-        height: 250px;
-        margin-top: 20px;
-
-        img {
-          -o-object-fit: fill;
-          object-fit: fill;
-          margin-top: 0;
-          border-radius: 10%;
-        }
-      }
       &_buttonsWrap {
-        width: 90%;
         justify-content: center;
-        margin-bottom: 10;
-        &_buttons {
-          width: 50px;
-          height: 50px;
-        }
-      }
-      &_textWrap {
-        width: 100%;
-        text-align: justify;
-        margin: 25px 0;
       }
     }
   }
 }
 @media (max-width: 320px) {
   .Post {
-    width: 90%;
     &_container {
-      width: 95%;
       &_buttonAndIDWrap {
         width: 95%;
       }
@@ -370,33 +262,20 @@
         margin-top: 25px;
         font-size: 23px;
         line-height: 30px;
-        text-align: justify;
       }
       &_imgWrap {
         width: 100%;
         height: 250px;
         margin-top: 20px;
-
         img {
-          -o-object-fit: fill;
-          object-fit: fill;
-          margin-top: 0;
           border-radius: 7%;
         }
       }
       &_buttonsWrap {
-        width: 90%;
-        justify-content: center;
-        margin-bottom: 10;
         &_buttons {
           width: 50px;
           height: 50px;
         }
-      }
-      &_textWrap {
-        width: 90%;
-        text-align: justify;
-        margin: 25px 0;
       }
     }
   }

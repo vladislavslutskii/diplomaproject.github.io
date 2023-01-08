@@ -189,8 +189,7 @@
     margin-top: 45px;
     width: 95%;
     height: 400px;
-    padding: 30px;
-    gap: 30px;
+
     &__inputContainer {
       &__forgotPass {
         margin-top: 5px;
@@ -207,7 +206,7 @@
   .buttonAndText {
     &__signUpButton {
       margin-top: 0px;
-      margin-bottom: 5px;
+
       height: 50px !important;
     }
     &__formFooterText {
@@ -216,46 +215,18 @@
   }
 }
 @media (max-width: 425px) {
-  .label {
-    font-size: 14px;
-  }
   .formContainer {
-    margin-top: 45px;
-    width: 95%;
     height: 380px;
     padding: 25px;
     gap: 30px;
-    &__inputContainer {
-      &__forgotPass {
-        margin-top: 5px;
-        font-size: 14px;
-      }
-      &__emailInput {
-        height: 50px;
-      }
-      &__passwordInput {
-        height: 50px;
-      }
-    }
   }
-  .buttonAndText {
-    &__signUpButton {
-      margin-top: 0px;
-      margin-bottom: 5px;
-      height: 50px !important;
-    }
-    &__formFooterText {
-      font-size: 14px;
-    }
+  .buttonAndText__signUpButton {
+    margin-bottom: 10px;
   }
 }
 @media (max-width: 375px) {
-  .label {
-    font-size: 14px;
-  }
   .formContainer {
     margin-top: 35px;
-    width: 95%;
     height: 320px;
     padding: 25px;
     gap: 20px;
@@ -275,7 +246,7 @@
   }
   .buttonAndText {
     &__signUpButton {
-      margin-bottom: 10px;
+      margin-bottom: 12px;
       height: 38px !important;
     }
     &__formFooterText {

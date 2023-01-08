@@ -39,32 +39,9 @@
     width: 95%;
   }
 }
-@media (max-width: 768px) {
-  .modal_content {
-    width: 95%;
-  }
-}
+
 @media (max-width: 742px) {
   .modal_content {
-    width: 95%;
-    display: none;
-  }
-  .modalActive {
-    opacity: 0;
-  }
-}
-@media (max-width: 375px) {
-  .modal_content {
-    width: 95%;
-    display: none;
-  }
-  .modalActive {
-    opacity: 0;
-  }
-}
-@media (max-width: 320px) {
-  .modal_content {
-    width: 95%;
     display: none;
   }
   .modalActive {
