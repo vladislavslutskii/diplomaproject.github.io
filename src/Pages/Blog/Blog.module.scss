@@ -19,6 +19,7 @@
       margin-right: auto;
       display: flex;
       border-bottom: 1px solid rgba(49, 48, 55, 0.1);
+      flex-wrap: wrap;
     }
     &_Dark {
       background-color: #313037;
@@ -119,5 +120,143 @@
   }
   .filterMenu_selectWrap {
     padding: 0 0 0 15px;
+  }
+}
+@media (max-width: 520px) {
+  .Blog {
+    width: 100%;
+    padding-top: 20px;
+    &_container {
+      width: 95%;
+      &_titleWrap {
+        width: 70%;
+        margin: auto;
+        text-align: center;
+      }
+      &_tabWrap {
+        width: 90%;
+        margin: auto;
+        margin-top: 50px;
+      }
+    }
+  }
+  .filterMenu {
+    margin-top: 50px;
+    flex-wrap: wrap;
+    &_buttonWrap {
+      margin: auto;
+      width: 70%;
+    }
+    &_selectWrap {
+      margin: auto;
+      margin-top: 20px;
+      padding: 0;
+    }
+  }
+}
+@media (max-width: 425px) {
+  .Blog {
+    width: 100%;
+    padding-top: 20px;
+    &_container {
+      width: 95%;
+      &_titleWrap {
+        width: 70%;
+        margin: auto;
+        text-align: center;
+      }
+      &_tabWrap {
+        width: 90%;
+        margin: auto;
+        margin-top: 50px;
+      }
+      &_Paginate {
+        width: 95%;
+        margin: auto;
+      }
+    }
+  }
+  .filterMenu {
+    margin-top: 50px;
+    flex-wrap: wrap;
+    &_buttonWrap {
+      margin: auto;
+      width: 70%;
+    }
+    &_selectWrap {
+      margin: auto;
+      margin-top: 20px;
+      padding: 0;
+    }
+  }
+}
+@media (max-width: 375px) {
+  .Blog {
+    width: 100%;
+    padding-top: 20px;
+    &_container {
+      width: 95%;
+      &_titleWrap {
+        width: 70%;
+        margin: auto;
+        text-align: center;
+      }
+      &_tabWrap {
+        width: 90%;
+        margin: auto;
+        margin-top: 50px;
+      }
+      &_Paginate {
+        display: none;
+      }
+    }
+  }
+  .filterMenu {
+    margin-top: 50px;
+    flex-wrap: wrap;
+    &_buttonWrap {
+      margin: auto;
+      width: 60%;
+    }
+    &_selectWrap {
+      margin: auto;
+      margin-top: 20px;
+      padding: 0;
+    }
+  }
+}
+@media (max-width: 320px) {
+  .Blog {
+    width: 100%;
+    padding-top: 20px;
+    &_container {
+      width: 95%;
+      &_titleWrap {
+        width: 50%;
+        margin: auto;
+        text-align: center;
+      }
+      &_tabWrap {
+        width: 90%;
+        margin: auto;
+        margin-top: 50px;
+      }
+      &_Paginate {
+        display: none;
+      }
+    }
+  }
+  .filterMenu {
+    margin-top: 50px;
+    flex-wrap: wrap;
+    &_buttonWrap {
+      margin: auto;
+      width: 55%;
+    }
+    &_selectWrap {
+      margin: auto;
+      margin-top: 20px;
+      padding: 0;
+    }
   }
 }

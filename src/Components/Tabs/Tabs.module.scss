@@ -1,6 +1,5 @@
 .navigation {
   width: auto;
-  // border-bottom: 1px solid #dadada;
   &__list {
     display: flex;
     justify-content: space-between;
@@ -155,4 +154,12 @@
   background: #dadada;
   transition: transform 0.25s;
   transform-origin: left;
+}
+@media (max-width: 520px) {
+  .navigation {
+    margin: auto;
+    &__list {
+      width: auto;
+    }
+  }
 }

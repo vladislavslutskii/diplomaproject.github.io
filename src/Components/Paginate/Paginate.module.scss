@@ -57,7 +57,6 @@
   margin-right: auto;
   position: relative;
   color: #8d8e97;
-  margin-right: auto;
 }
 .availableToClickButton {
   color: green;
@@ -66,5 +65,18 @@
 @media (max-width: 1300px) {
   .pageNumber {
     font-size: 16px !important;
+  }
+}
+@media (max-width: 768px) {
+  .pagesContainer {
+    width: 100%;
+  }
+}
+@media (max-width: 425px) {
+  .pagesContainer {
+    width: 100%;
+  }
+  .pageNumber {
+    text-align: center;
   }
 }
