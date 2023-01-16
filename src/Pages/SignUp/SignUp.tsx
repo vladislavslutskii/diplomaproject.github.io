@@ -1,15 +1,24 @@
-import React, { FC, useState, useEffect } from "react";
+import React, { FC, useState, useEffect, useContext } from "react";
 import styles from "./SignUp.module.scss";
 
 import classnames from "classnames";
 import Input from "../../Components/Input";
 import Button from "../../Components/Button";
 import Title from "../../Components/Title";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { useThemeContext, Theme } from "../../Context/ThemeContext/Context";
 import { PathNames } from "../Router";
 import { useDispatch } from "react-redux";
 import { ButtonType } from "../../Components/Button/types";
+import {
+  createUserWithEmailAndPassword,
+  GoogleAuthProvider,
+  sendEmailVerification,
+  signInWithPopup,
+} from "firebase/auth";
+import { auth, db } from "../../firebase";
+import { useAuthValue } from "../../Context/AuthContext/Context";
+import { addDoc, collection, getDocs, query, where } from "firebase/firestore";
 
 const validateEmail = (email: string) => {
   return String(email)
@@ -24,6 +33,7 @@ type LabelProps = {
 };
 
 const SignUp = () => {
+  const navigate = useNavigate();
   const [name, setName] = useState("");
 
   const [email, setEmail] = useState("");
@@ -39,7 +49,70 @@ const SignUp = () => {
   const [confirmPasswordTouched, setConfirmPasswordTouched] = useState(false);
 
   const [modalActive, setModalActive] = useState(false);
+  const [error, setError] = useState("");
+  // @ts-ignore
+  const { setTimeActive } = useAuthValue();
   const dispatch = useDispatch();
+
+  const validatePassword = () => {
+    let isValid = true;
+    if (password !== "" && confirmPassword !== "") {
+      if (password !== confirmPassword) {
+        isValid = false;
+        setError("Passwords does not match");
+      }
+    }
+    return isValid;
+  };
+
+  const register = async (e: { preventDefault: () => void }) => {
+    e.preventDefault();
+    setError("");
+    if (validatePassword()) {
+      const res = await createUserWithEmailAndPassword(auth, email, password)
+        .then(async (res) => {
+          const user = res.user;
+          console.log(user);
+          await addDoc(collection(db, "users"), {
+            uid: user.uid,
+            name,
+            authProvider: "local",
+            email,
+          });
+          // @ts-ignore
+          return sendEmailVerification(auth.currentUser)
+            .then(() => {
+              setTimeActive(true);
+              navigate("/verify-email");
+            })
+            .catch((err) => alert(err.message));
+        })
+        .catch((err) => setError(err.message));
+    }
+    setName("");
+    setEmail("");
+    setPassword("");
+    setConfirmPassword("");
+  };
+  const googleProvider = new GoogleAuthProvider();
+  const signInWithGoogle = async () => {
+    try {
+      const res = await signInWithPopup(auth, googleProvider);
+      const user = res.user;
+      const q = query(collection(db, "users"), where("uid", "==", user.uid));
+      const docs = await getDocs(q);
+      if (docs.docs.length === 0) {
+        await addDoc(collection(db, "users"), {
+          uid: user.uid,
+          name: user.displayName,
+          authProvider: "google",
+          email: user.email,
+        });
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   useEffect(() => {
     if (emailTouched && !validateEmail(email)) {
@@ -94,18 +167,6 @@ const SignUp = () => {
   const { theme, onChangeTheme } = useThemeContext();
   const isDarkTheme = theme === Theme.Dark;
 
-  const a = {
-    username: name,
-    email: email,
-    password: password,
-  };
-
-  // const onAuth = () => {
-  //   localStorage.setItem(`person`, JSON.stringify(a));
-  //   dispatch(createNewUser({ username: name, email, password }));
-  // };
-
-  // console.log(JSON.parse(`person`));
   return (
     <div
       className={classnames(styles.signUp, {
@@ -129,10 +190,12 @@ const SignUp = () => {
           <Title title={"Sign Up"}></Title>
         </div>
 
-        <div
+        <form
           className={classnames(styles.formContainer, {
             [styles.formContainer__Dark]: isDarkTheme,
           })}
+          onSubmit={register}
+          name="registration_form"
         >
           <div className={styles.formContainer__inputContainer}>
             <Label title={"Name"} />
@@ -239,7 +302,14 @@ const SignUp = () => {
               title={"Sign Up"}
               className={styles.buttonAndText__signUpButton}
               disabled={false}
-              // onClick={onAuth}
+              onClick={register}
+            />
+            <Button
+              type={ButtonType.Primary}
+              title={"Google Account"}
+              className={styles.buttonAndText__signUpButton}
+              disabled={false}
+              onClick={signInWithGoogle}
             />
             <div
               className={classnames(styles.buttonAndText__formFooterText, {
@@ -262,7 +332,7 @@ const SignUp = () => {
               </Link>
             </div>
           </div>
-        </div>
+        </form>
       </div>
     </div>
   );

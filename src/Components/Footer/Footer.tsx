@@ -5,6 +5,10 @@ import classnames from "classnames";
 import Label from "../Label";
 import Switch from "../Switch";
 import { useThemeContext, Theme } from "../../Context/ThemeContext/Context";
+import { signOut } from "firebase/auth";
+import { auth } from "../../firebase";
+import Button from "../Button";
+import { ButtonType } from "../Button/types";
 
 const Footer = () => {
   const { theme, onChangeTheme } = useThemeContext();
@@ -15,7 +19,10 @@ const Footer = () => {
     setChecked(nextChecked);
     onChangeTheme();
   };
-
+  const logout = () => {
+    signOut(auth);
+    document.location.reload();
+  };
   return (
     <div
       className={classnames(styles.footer, {
@@ -34,6 +41,13 @@ const Footer = () => {
         >
           ©2022 Blogfolio
         </div>
+
+        <Button
+          type={ButtonType.Primary}
+          title={"Log Out"}
+          className={styles.buttonAndText__signUpButton}
+          onClick={logout}
+        />
         <div
           className={classnames(styles.footerWrap_switchWrap, {
             [styles.footerWrap_switchWrap_Dark]: isDarkTheme,

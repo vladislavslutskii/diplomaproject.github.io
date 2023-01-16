@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import styles from "./Header.module.scss";
 
 import classNames from "classnames";
@@ -16,6 +16,11 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { TabsNames } from "../../Utils";
 import { HeaderProps } from "./types";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { collection, getDocs, query, where } from "firebase/firestore";
+import { auth, db } from "../../firebase";
+import { signOut } from "firebase/auth";
+import { useAuthValue } from "../../Context/AuthContext/Context";
 
 const Header: FC<HeaderProps> = ({ onClick, openInput }) => {
   const navigate = useNavigate();
@@ -35,6 +40,28 @@ const Header: FC<HeaderProps> = ({ onClick, openInput }) => {
   const onSignInClick = () => {
     navigate(PathNames.SignIn);
   };
+  // @ts-ignore
+  const { currentUser } = useAuthValue();
+  const [user] = useAuthState(auth);
+  const [name, setName] = useState("");
+
+  const fetchUserName = async () => {
+    try {
+      const q = query(collection(db, "users"), where("uid", "==", user?.uid));
+      const doc = await getDocs(q);
+      const data = doc.docs[0].data();
+
+      setName(data.name);
+    } catch (err) {
+      console.error(err);
+      alert("An error occured while fetching user data");
+    }
+  };
+  useEffect(() => {
+    if (!user) return navigate("/");
+    fetchUserName();
+  }, [user]);
+  console.log(name);
 
   const onSearch = () => {
     if (value.length > 0) {
@@ -56,6 +83,7 @@ const Header: FC<HeaderProps> = ({ onClick, openInput }) => {
       onClick();
     }
   };
+
   const screenWidth = window.screen.width;
   return (
     <nav
@@ -137,7 +165,9 @@ const Header: FC<HeaderProps> = ({ onClick, openInput }) => {
         )}
 
         <div className={styles.userWrap} onClick={onSignInClick}>
-          <User username={"Sign In"}></User>
+          <User
+            username={!auth.currentUser ? name || "Sign In" : "Sign In"}
+          ></User>
         </div>
       </div>
       {openInput && screenWidth < 549 && (
@@ -155,6 +185,7 @@ const Header: FC<HeaderProps> = ({ onClick, openInput }) => {
             onChange={onChange}
             value={value}
           />
+
           {value.length > 0 ? (
             <div
               className={classNames(styles.searchIcon, {

@@ -1,16 +1,25 @@
-import React, { useState, FC, useEffect } from "react";
+import React, { useState, FC, useEffect, useContext } from "react";
 import styles from "./SignIn.module.scss";
 import classnames from "classnames";
 
 import Input from "../../Components/Input";
 import Button from "../../Components/Button";
 import Title from "../../Components/Title";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { PathNames } from "../Router";
 import { useDispatch } from "react-redux";
-import { useThemeContext, Theme } from "../../Context/ThemeContext/Context";
+import Context, {
+  useThemeContext,
+  Theme,
+} from "../../Context/ThemeContext/Context";
 import { ButtonType } from "../../Components/Button/types";
 import { LabelProps } from "./type";
+import {
+  signInWithEmailAndPassword,
+  sendEmailVerification,
+} from "firebase/auth";
+import { auth } from "../../firebase";
+import { useAuthValue } from "../../Context/AuthContext/Context";
 
 const validateEmail = (email: string) => {
   return String(email)
@@ -22,6 +31,7 @@ const validateEmail = (email: string) => {
 
 const SignIn = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { theme, onChangeTheme } = useThemeContext();
   const isDarkTheme = theme === Theme.Dark;
   const [email, setEmail] = useState("");
@@ -31,6 +41,30 @@ const SignIn = () => {
   const [password, setPassword] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [passwordTouched, setPasswordTouched] = useState(false);
+  // @ts-ignore
+  const { setTimeActive } = useAuthValue();
+  const [error, setError] = useState("");
+
+  const login = (e: { preventDefault: () => void }) => {
+    e.preventDefault();
+    const user = signInWithEmailAndPassword(auth, email, password)
+      .then(() => {
+        console.log(auth);
+        // @ts-ignore
+        if (!auth.currentUser.emailVerified) {
+          // @ts-ignore
+          sendEmailVerification(auth.currentUser)
+            .then(() => {
+              setTimeActive(true);
+              navigate("/verify-email");
+            })
+            .catch((err) => alert(err.message));
+        } else {
+          navigate("/");
+        }
+      })
+      .catch((err) => setError(err.message));
+  };
 
   useEffect(() => {
     if (emailTouched && !validateEmail(email)) {
@@ -91,10 +125,12 @@ const SignIn = () => {
           <Title title={"Sign In"}></Title>
         </div>
 
-        <div
+        <form
           className={classnames(styles.formContainer, {
             [styles.formContainer__Dark]: isDarkTheme,
           })}
+          onSubmit={login}
+          name="login_form"
         >
           <div className={styles.formContainer__inputContainer}>
             <Label title={"Email"} />
@@ -166,6 +202,7 @@ const SignIn = () => {
               type={ButtonType.Primary}
               title={"Sign In"}
               className={styles.buttonAndText__signUpButton}
+              onClick={login}
             />
             <div
               className={classnames(styles.buttonAndText__formFooterText, {
@@ -188,7 +225,7 @@ const SignIn = () => {
               </Link>
             </div>
           </div>
-        </div>
+        </form>
       </div>
     </div>
   );

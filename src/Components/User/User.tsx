@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useEffect, useState } from "react";
 import styles from "./User.module.scss";
 
 import classNames from "classnames";
@@ -14,7 +14,7 @@ const User: FC<UserPropsType> = ({ username }) => {
   const res = username.split("").filter(function (l: any) {
     return ~caps.indexOf(l);
   });
-
+  console.log(res);
   return (
     <div
       className={classNames(styles.user, {
@@ -23,11 +23,7 @@ const User: FC<UserPropsType> = ({ username }) => {
     >
       <div className={styles.user_Wrap}>
         <div className={styles.user_Img}>
-          {username !== `Sign In` ? (
-            res
-          ) : (
-            <UserImg width={24} height={24}></UserImg>
-          )}
+          {res.length !== 0 ? res : <UserImg width={24} height={24}></UserImg>}
         </div>
         <p
           className={classNames(styles.user_Text, {
