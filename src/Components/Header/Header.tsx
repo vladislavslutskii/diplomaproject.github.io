@@ -165,9 +165,7 @@ const Header: FC<HeaderProps> = ({ onClick, openInput }) => {
         )}
 
         <div className={styles.userWrap} onClick={onSignInClick}>
-          <User
-            username={!auth.currentUser ? name || "Sign In" : "Sign In"}
-          ></User>
+          <User username={currentUser ? name || "Sign In" : "Sign In"}></User>
         </div>
       </div>
       {openInput && screenWidth < 549 && (
