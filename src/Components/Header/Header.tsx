@@ -19,7 +19,6 @@ import { HeaderProps } from "./types";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { auth, db } from "../../firebase";
-import { signOut } from "firebase/auth";
 import { useAuthValue } from "../../Context/AuthContext/Context";
 
 const Header: FC<HeaderProps> = ({ onClick, openInput }) => {
@@ -61,7 +60,6 @@ const Header: FC<HeaderProps> = ({ onClick, openInput }) => {
     if (!user) return navigate("/");
     fetchUserName();
   }, [user]);
-  console.log(name);
 
   const onSearch = () => {
     if (value.length > 0) {
@@ -165,7 +163,11 @@ const Header: FC<HeaderProps> = ({ onClick, openInput }) => {
         )}
 
         <div className={styles.userWrap} onClick={onSignInClick}>
-          <User username={currentUser ? name || "Sign In" : "Sign In"}></User>
+          <User
+            username={
+              currentUser?.emailVerified ? name || "Sign In" : "Sign In"
+            }
+          ></User>
         </div>
       </div>
       {openInput && screenWidth < 549 && (

@@ -29,6 +29,23 @@
 .error {
   border-color: #fd3419;
 }
+@media (max-width: 2000px) {
+  ::-webkit-input-placeholder {
+    font-size: 15px !important;
+  }
+  ::-moz-placeholder {
+    font-size: 15px !important;
+  }
+  :-ms-input-placeholder {
+    font-size: 15px !important;
+  }
+  ::-ms-input-placeholder {
+    font-size: 15px !important;
+  }
+  ::placeholder {
+    font-size: 15px !important;
+  }
+}
 @media (max-width: 1200px) {
   ::-webkit-input-placeholder {
     font-size: 15px !important;
@@ -83,35 +100,35 @@
 }
 @media (max-width: 375px) {
   ::-webkit-input-placeholder {
-    font-size: 12px !important;
+    font-size: 13px !important;
   }
   ::-moz-placeholder {
-    font-size: 12px !important;
+    font-size: 13px !important;
   }
   :-ms-input-placeholder {
-    font-size: 12px !important;
+    font-size: 13px !important;
   }
   ::-ms-input-placeholder {
-    font-size: 12px !important;
+    font-size: 13px !important;
   }
   ::placeholder {
-    font-size: 12px !important;
+    font-size: 13px !important;
   }
 }
 @media (max-width: 320px) {
   ::-webkit-input-placeholder {
-    font-size: 11px !important;
+    font-size: 12px !important;
   }
   ::-moz-placeholder {
-    font-size: 11px !important;
+    font-size: 12px !important;
   }
   :-ms-input-placeholder {
-    font-size: 11px !important;
+    font-size: 12px !important;
   }
   ::-ms-input-placeholder {
-    font-size: 11px !important;
+    font-size: 12px !important;
   }
   ::placeholder {
-    font-size: 11px !important;
+    font-size: 12px !important;
   }
 }

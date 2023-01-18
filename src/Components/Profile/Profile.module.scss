@@ -1,17 +1,73 @@
+.center {
+  margin: 0 auto;
+}
 .profile {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
   width: 90%;
-  max-width: 400px;
-  border: 1px solid #dcdcdc;
+  max-width: 500px;
+  box-shadow: 0px 12px 40px 9px rgba(0, 0, 0, 0.1);
+  border-radius: 16px;
   padding: 20px;
-  text-align: center;
+  background-color: hsl(210, 10%, 98%);
+  &_button {
+    margin: 0 auto !important;
+    margin-top: 20px !important;
+    width: 100% !important;
+    height: 40px !important;
+    padding: 5px !important;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #fff;
+    background: #6c1bdb;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+    text-decoration: none;
+    margin: 0 auto;
+    &:disabled {
+      margin: 0 auto;
+      margin-top: 30px;
+      width: 90%;
+      height: 40px;
+      padding: 5px;
+    }
+  }
+  &_header {
+    text-align: center;
+    font-weight: 700;
+    margin-top: 0;
+    font-size: 35px;
+  }
+  &_text {
+    font-size: 17px;
+  }
 }
 
-.profile p {
-  text-align: left;
+@media (max-width: 2560px) {
+  .center {
+    margin: 150px auto;
+  }
+  .profile {
+    width: 100%;
+  }
 }
 
-.profile > span {
-  color: blue;
-  margin-top: 30px;
-  cursor: pointer;
+@media (max-width: 425px) {
+  .center {
+    width: 100%;
+    margin: 50px auto !important;
+  }
+  .profile {
+    width: 80%;
+    &_header {
+      font-size: 33px;
+    }
+  }
 }

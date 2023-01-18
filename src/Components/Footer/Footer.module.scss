@@ -16,6 +16,8 @@
     border-top: 1px solid rgba(255, 255, 255, 0.1);
   }
   &_Watermark {
+    display: flex;
+    align-items: center;
     font-weight: 400;
     font-size: 16px;
     line-height: 24px;
@@ -36,6 +38,10 @@
   &_Dark {
     color: #fff;
   }
+}
+.buttonAndText__signUpButton {
+  height: 10px;
+  margin: 0 auto;
 }
 @media (max-width: 1300px) {
   .footerWrap {
@@ -68,8 +74,10 @@
     padding: 15px;
   }
 }
-@media (max-width: 375px) {
+@media (max-width: 600px) {
   .footerWrap {
+    display: flex;
+    flex-direction: column-reverse;
     &_Watermark {
       display: none;
     }
@@ -80,12 +88,27 @@
     }
   }
   .switchLabel {
-    font-size: 14px !important;
+    font-size: 16px !important;
+    color: black;
   }
   .switch {
     font-size: 14px;
   }
   .userWrap {
     height: 100%;
+  }
+  .buttonAndText__signUpButton {
+    height: 10px;
+    width: 50%;
+    margin: 0 auto;
+    margin-top: 15px;
+  }
+}
+@media (max-width: 375px) {
+  .buttonAndText__signUpButton {
+    height: 10px;
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 15px;
   }
 }

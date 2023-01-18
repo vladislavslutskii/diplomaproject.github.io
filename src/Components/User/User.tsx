@@ -14,7 +14,7 @@ const User: FC<UserPropsType> = ({ username }) => {
   const res = username.split("").filter(function (l: any) {
     return ~caps.indexOf(l);
   });
-  console.log(res);
+
   return (
     <div
       className={classNames(styles.user, {
@@ -30,7 +30,7 @@ const User: FC<UserPropsType> = ({ username }) => {
             [styles.user_Text_Dark]: isDarkTheme,
           })}
         >
-          {username !== `Sign In` ? username : `Sign In`}
+          {username}
         </p>
       </div>
     </div>

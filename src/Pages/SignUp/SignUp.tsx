@@ -1,24 +1,21 @@
-import React, { FC, useState, useEffect, useContext } from "react";
+import { FC, useState, useEffect } from "react";
 import styles from "./SignUp.module.scss";
 
 import classnames from "classnames";
 import Input from "../../Components/Input";
 import Button from "../../Components/Button";
 import Title from "../../Components/Title";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useThemeContext, Theme } from "../../Context/ThemeContext/Context";
 import { PathNames } from "../Router";
-import { useDispatch } from "react-redux";
 import { ButtonType } from "../../Components/Button/types";
 import {
   createUserWithEmailAndPassword,
-  GoogleAuthProvider,
   sendEmailVerification,
-  signInWithPopup,
 } from "firebase/auth";
 import { auth, db } from "../../firebase";
 import { useAuthValue } from "../../Context/AuthContext/Context";
-import { addDoc, collection, getDocs, query, where } from "firebase/firestore";
+import { addDoc, collection } from "firebase/firestore";
 
 const validateEmail = (email: string) => {
   return String(email)
@@ -48,11 +45,9 @@ const SignUp = () => {
   const [confirmPasswordError, setConfirmPasswordError] = useState("");
   const [confirmPasswordTouched, setConfirmPasswordTouched] = useState(false);
 
-  const [modalActive, setModalActive] = useState(false);
   const [error, setError] = useState("");
   // @ts-ignore
   const { setTimeActive } = useAuthValue();
-  const dispatch = useDispatch();
 
   const validatePassword = () => {
     let isValid = true;
@@ -93,25 +88,6 @@ const SignUp = () => {
     setEmail("");
     setPassword("");
     setConfirmPassword("");
-  };
-  const googleProvider = new GoogleAuthProvider();
-  const signInWithGoogle = async () => {
-    try {
-      const res = await signInWithPopup(auth, googleProvider);
-      const user = res.user;
-      const q = query(collection(db, "users"), where("uid", "==", user.uid));
-      const docs = await getDocs(q);
-      if (docs.docs.length === 0) {
-        await addDoc(collection(db, "users"), {
-          uid: user.uid,
-          name: user.displayName,
-          authProvider: "google",
-          email: user.email,
-        });
-      }
-    } catch (err) {
-      console.error(err);
-    }
   };
 
   useEffect(() => {
@@ -304,13 +280,7 @@ const SignUp = () => {
               disabled={false}
               onClick={register}
             />
-            <Button
-              type={ButtonType.Primary}
-              title={"Google Account"}
-              className={styles.buttonAndText__signUpButton}
-              disabled={false}
-              onClick={signInWithGoogle}
-            />
+
             <div
               className={classnames(styles.buttonAndText__formFooterText, {
                 [styles.buttonAndText__formFooterText__Dark]: isDarkTheme,

@@ -1,25 +1,66 @@
 .verifyEmail {
   width: 90%;
   max-width: 500px;
-  box-shadow: 0px 0px 4px hsl(210, 12%, 75%);
+  box-shadow: 0px 12px 40px 9px rgba(0, 0, 0, 0.1);
+  border-radius: 16px;
   text-align: center;
-  padding: 40px 20px;
+  padding: 30px 20px;
   background-color: hsl(210, 10%, 98%);
-}
-
-.verifyEmail h1 {
-  font-weight: 300;
-  margin-top: 0;
-}
-
-.verifyEmail > p {
-  line-height: 25px;
+  &_header {
+    font-weight: 700;
+    margin-top: 0;
+  }
+  &_mail {
+    font-weight: bold;
+    font-size: 20px;
+    margin-top: 10px;
+    width: 100%;
+  }
+  &_button {
+    margin: 0 auto !important;
+    margin-top: 30px !important;
+    width: 100% !important;
+    height: 40px !important;
+    padding: 5px !important;
+    &:disabled {
+      margin: 0 auto;
+      margin-top: 30px;
+      width: 90%;
+      height: 40px;
+      padding: 5px;
+    }
+  }
+  &_VerificationText {
+    line-height: 25px;
+    font-size: 17px;
+  }
 }
 
 .verifyEmail > span {
-  color: gray;
+  margin-top: 10px;
+}
+@media (max-width: 2560px) {
+  .center {
+    margin: 100px auto !important;
+  }
 }
 
-.verifyEmail > button {
-  margin-top: 35px;
+@media (max-width: 425px) {
+  .center {
+    width: 100%;
+  }
+  .verifyEmail {
+    width: 80%;
+    margin: 50px auto !important;
+    &_header {
+      font-size: 29px;
+    }
+  }
+}
+@media (max-width: 375px) {
+  .verifyEmail {
+    &_header {
+      font-size: 27px;
+    }
+  }
 }

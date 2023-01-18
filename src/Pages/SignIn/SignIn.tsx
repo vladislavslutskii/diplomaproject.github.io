@@ -1,17 +1,13 @@
-import React, { useState, FC, useEffect, useContext } from "react";
+import { useState, FC, useEffect } from "react";
 import styles from "./SignIn.module.scss";
 import classnames from "classnames";
 
 import Input from "../../Components/Input";
 import Button from "../../Components/Button";
 import Title from "../../Components/Title";
+import { useThemeContext, Theme } from "../../Context/ThemeContext/Context";
 import { Link, useNavigate } from "react-router-dom";
 import { PathNames } from "../Router";
-import { useDispatch } from "react-redux";
-import Context, {
-  useThemeContext,
-  Theme,
-} from "../../Context/ThemeContext/Context";
 import { ButtonType } from "../../Components/Button/types";
 import { LabelProps } from "./type";
 import {
@@ -30,7 +26,6 @@ const validateEmail = (email: string) => {
 };
 
 const SignIn = () => {
-  const dispatch = useDispatch();
   const navigate = useNavigate();
   const { theme, onChangeTheme } = useThemeContext();
   const isDarkTheme = theme === Theme.Dark;
@@ -47,9 +42,8 @@ const SignIn = () => {
 
   const login = (e: { preventDefault: () => void }) => {
     e.preventDefault();
-    const user = signInWithEmailAndPassword(auth, email, password)
+    signInWithEmailAndPassword(auth, email, password)
       .then(() => {
-        console.log(auth);
         // @ts-ignore
         if (!auth.currentUser.emailVerified) {
           // @ts-ignore

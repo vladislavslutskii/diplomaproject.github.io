@@ -18,12 +18,11 @@ const App = () => {
     dispatch(changeTheme());
   };
 
-  const [currentUser, setCurrentUser] = useState();
+  const [currentUser, setCurrentUser] = useState(null);
   const [timeActive, setTimeActive] = useState(false);
 
   useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
-      // @ts-ignore
+    onAuthStateChanged(auth, (user: any) => {
       setCurrentUser(user);
     });
   }, []);

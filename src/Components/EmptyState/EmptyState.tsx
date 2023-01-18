@@ -43,7 +43,7 @@ const EmptyState = () => {
           <Link
             to={PathNames.Home}
             className={classnames(styles.goHome, {
-              [styles.goHome__Dark]: theme === Theme.Dark,
+              [styles.goHome_Dark]: theme === Theme.Dark,
             })}
           >
             <div>Go Home</div>

@@ -260,8 +260,8 @@
   }
   .formContainer {
     width: 270px;
-    height: 320px;
-    padding: 25px;
+    height: 350px;
+    padding: 25px 25px !important;
     gap: 20px;
 
     &__inputContainer {
