@@ -2,7 +2,7 @@ import { create } from "apisauce";
 import { PER_PAGE } from "../../Utils";
 
 const API = create({
-  baseURL: "https://studapi.teachmeskills.by/",
+  baseURL: "https://studapi.teachmeskills.by",
 });
 
 const getPostsList = (
